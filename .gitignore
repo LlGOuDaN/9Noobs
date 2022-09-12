@@ -61,5 +61,6 @@ crashlytics-build.properties
 .idea
 Assets/Plugins/Editor/JetBrains*
 
-UserSettings/
+UserSettings
+UserSettings/**/*
 
