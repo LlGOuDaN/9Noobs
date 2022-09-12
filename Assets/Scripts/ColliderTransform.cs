@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class ColliderTransform : MonoBehaviour
 {
-    private Color ground_color;
+    private Color square_color;
     private Color player_color;
     private GameObject player_object;
     // Start is called before the first frame update
     void Start()
     {
-        ground_color = gameObject.GetComponent<SpriteRenderer>().color;
+        square_color = gameObject.GetComponent<SpriteRenderer>().color;
         player_object = GameObject.Find("Player");
         ColliderDetect ();
     }
@@ -28,7 +28,7 @@ public class ColliderTransform : MonoBehaviour
     void ColliderDetect (){
             player_color = player_object.GetComponent<SpriteRenderer>().color;
             BoxCollider2D box = gameObject.GetComponent<BoxCollider2D>(); 
-            if( player_color == ground_color ) {
+            if( player_color != square_color ) {
                 box.enabled = false;
             }
             else{

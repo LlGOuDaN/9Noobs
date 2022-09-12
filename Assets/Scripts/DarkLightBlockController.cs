@@ -21,8 +21,9 @@ public class DarkLightBlockController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             isWhite = !isWhite;
+            ChangeColor();
         }
-        ChangeColor();
+        
     }
 
     void ChangeColor()
