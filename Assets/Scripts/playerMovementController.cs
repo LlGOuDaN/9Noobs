@@ -30,6 +30,9 @@ public class playerMovementController : MonoBehaviour
                 Jump();
                 Run();
             }
+            if (rb.position.y < -1f) {
+                FindObjectOfType<GameManager>().EndGame();
+            }
         }
 
         private bool IsGrounded()
