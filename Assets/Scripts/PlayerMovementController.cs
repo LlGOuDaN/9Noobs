@@ -44,8 +44,13 @@ public class PlayerMovementController : MonoBehaviour
             }      
             else
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                Invoke(nameof(RestartLevel), 0.5f);
             }
+        }
+
+        private void RestartLevel()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
         private void FixedUpdate()
@@ -68,10 +73,6 @@ public class PlayerMovementController : MonoBehaviour
 
         void Run()
         {
-            if (GameManager.disableInput)
-            {
-                return;
-            }
             Vector3 moveVelocity = Vector3.zero;
             Vector3 localScale = transform.localScale;
 
@@ -96,10 +97,6 @@ public class PlayerMovementController : MonoBehaviour
         }
         void Jump()
         {
-            if (GameManager.disableInput)
-            {
-                return;
-            }
             if ((Input.GetButtonDown("Jump")))
             {
                 if (IsGrounded() || doubleJump)

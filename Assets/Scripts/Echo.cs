@@ -21,7 +21,12 @@ public class Echo : MonoBehaviour
             renderer = gameObject.GetComponent<SpriteRenderer>();
             renderer.color = Color.red;
             GameManager.disableInput = true;
-            Invoke("Restore", 2f);
+            // Invoke("Restore", 2f);
+        }
+
+        if (Input.GetKeyUp(KeyCode.RightShift) || Input.GetKeyUp(KeyCode.Mouse1))
+        {
+            Restore();
         }
         
     }
