@@ -6,6 +6,7 @@ public class Echo : MonoBehaviour
 {
     private SpriteRenderer renderer;
     private Color original_color;
+    private GameObject player_object;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,13 +19,13 @@ public class Echo : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.RightShift))
         {
             renderer = gameObject.GetComponent<SpriteRenderer>();
-            original_color = renderer.color;
             renderer.color = Color.red;
             Invoke("Restore", 2f);
         }
         
     }
     void Restore() {
-        renderer.color = original_color;
+        player_object = GameObject.Find("Player");
+        renderer.color = player_object.GetComponent<DarkLightBlockController>().isWhite ? Color.black : Color.white;
     }
 }
