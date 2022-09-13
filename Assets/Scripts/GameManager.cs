@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject completeLevelUI;
 
+    public static bool disableInput = false;
     public void CompleteLevel() {
         completeLevelUI.SetActive(true);
     }
