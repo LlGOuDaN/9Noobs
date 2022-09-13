@@ -18,7 +18,11 @@ public class ColliderTransform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (GameManager.disableInput)
+        {
+            return;
+        }
+        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.Mouse0))
         {
             Invoke("ColliderDetect", 0.1f);
         }

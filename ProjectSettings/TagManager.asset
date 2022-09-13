@@ -11,7 +11,7 @@ TagManager:
   - GroundLayer
   - Water
   - UI
-  - 
+  - DeadCheckLayer
   - 
   - 
   - 
@@ -43,6 +43,9 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 3814588953
     locked: 0
   - name: Mask
     uniqueID: 2347747551

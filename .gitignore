@@ -64,3 +64,9 @@ Assets/Plugins/Editor/JetBrains*
 UserSettings
 UserSettings/**/*
 
+WebGL Builds
+WebGL Builds/**/
+
+connectwebgl.zip
+webgl_sharing
+

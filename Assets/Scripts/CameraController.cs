@@ -28,6 +28,11 @@ public class CameraController : MonoBehaviour
             playerPosition = new Vector3(playerPosition.x - offset, playerPosition.y, playerPosition.z);
         }
 
+        if (offsetSmoothing == 0)
+        {
+            transform.position = playerPosition;
+            return;
+        }
         transform.position = Vector3.Lerp(transform.position, playerPosition, offsetSmoothing * Time.deltaTime);
     }
 }
