@@ -22,7 +22,7 @@ public class ColliderTransform : MonoBehaviour
         {
             return;
         }
-        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.Mouse0))
         {
             Invoke("ColliderDetect", 0.1f);
         }

@@ -16,7 +16,7 @@ public class Echo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.RightShift) || Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeyCode.K) || Input.GetKeyDown(KeyCode.Mouse1))
         {
             renderer = gameObject.GetComponent<SpriteRenderer>();
             renderer.color = Color.red;
@@ -24,7 +24,7 @@ public class Echo : MonoBehaviour
             // Invoke("Restore", 2f);
         }
 
-        if (Input.GetKeyUp(KeyCode.RightShift) || Input.GetKeyUp(KeyCode.Mouse1))
+        if (Input.GetKeyUp(KeyCode.K) || Input.GetKeyUp(KeyCode.Mouse1))
         {
             Restore();
         }
