@@ -31,6 +31,7 @@ public class PlayerMovementController : MonoBehaviour
         Gizmos.DrawWireSphere(groundCheck.position, 0.1f);
     }
 
+<<<<<<< main
    private void Update()
    {
        if (!IsDead())
@@ -43,6 +44,24 @@ public class PlayerMovementController : MonoBehaviour
            Invoke(nameof(RestartLevel), 0.5f);
        }
    }
+=======
+        private void Update()
+        {
+            if (!IsDead())
+            {
+                if (IsGrounded() && !doubleJump) 
+                {
+                    doubleJump = true;    
+                }
+                horizontalMovement = Input.GetAxisRaw("Horizontal");
+                Jump();
+            }      
+            else
+            {
+                Invoke(nameof(RestartLevel), 0.5f);
+            }
+        }
+>>>>>>> Update PlayerMovementController.cs
 
    private void RestartLevel()
    {
@@ -76,6 +95,7 @@ public class PlayerMovementController : MonoBehaviour
        Vector3 moveVelocity = Vector3.zero;
        Vector3 localScale = transform.localScale;
 
+<<<<<<< main
        if (horizontalMovement < 0)
        {
            moveVelocity = Vector3.left;
@@ -106,3 +126,57 @@ public class PlayerMovementController : MonoBehaviour
        }
    }
     }
+=======
+            if (horizontalMovement < 0)
+            {
+                moveVelocity = Vector3.left;
+                
+                if(localScale.x > 0) {
+                    localScale.x *= -1f;
+                    transform.localScale = localScale;
+                }
+            }
+            if (horizontalMovement > 0)
+            {
+                moveVelocity = Vector3.right;
+                 if(localScale.x < 0) {
+                    localScale.x *= -1f;
+                    transform.localScale = localScale;
+                }
+            }
+            transform.position += moveVelocity * (movePower * Time.fixedDeltaTime);
+        }
+        void Jump()
+        {
+            if ((Input.GetButtonDown("Jump")))
+            {
+                if (IsGrounded() || ((Input.GetButtonDown("Jump")) && doubleJump))
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+                    doubleJump = false;
+                }
+            }
+        }
+
+    /*      这里修改了下二段跳， 原先的二段跳太难按出来了。   
+        void Jump()
+        {
+            if ((Input.GetButtonDown("Jump")))
+            {
+                if (IsGrounded() || doubleJump)
+                {
+                    if (doubleJump)
+                    {
+                        Debug.Log("double");
+                    }
+                    Debug.Log("jump");
+                    rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+                    doubleJump = !doubleJump;
+                }
+            }
+        }
+
+
+        */
+}
+>>>>>>> Update PlayerMovementController.cs
