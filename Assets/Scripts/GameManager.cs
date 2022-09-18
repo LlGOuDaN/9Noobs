@@ -5,7 +5,7 @@ public class GameManager : MonoBehaviour
 {
     bool gameHasEnded = false;
 
-    public float restartDelay = 1f;
+    public float restartDelay = 1.5f;
 
     public GameObject completeLevelUI;
 
@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     }
 
     void Restart() {
+        Debug.Log("I am here");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
