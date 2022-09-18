@@ -11,7 +11,7 @@ public class ColliderTransform : MonoBehaviour
     void Start()
     {
         square_color = gameObject.GetComponent<SpriteRenderer>().color;
-        player_object = GameObject.Find("Player");
+        player_object = GameObject.FindWithTag("Player");
         ColliderDetect ();
     }
 
