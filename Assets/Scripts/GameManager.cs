@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static int lastLevel = 3;
     bool gameHasEnded = false;
 
     public float restartDelay = 1.5f;

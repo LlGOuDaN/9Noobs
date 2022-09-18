@@ -10,7 +10,7 @@ public class EchoNew : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player_object = GameObject.Find("Player");
+        player_object = GameObject.FindWithTag("Player");
         renderer = gameObject.GetComponent<SpriteRenderer>();
         renderer.color = Color.clear;
         scale = renderer.transform.localScale;

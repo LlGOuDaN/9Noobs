@@ -16,7 +16,7 @@ public class DarkLightMaskAnimation : MonoBehaviour
     {   
         GameManager.disableInput = true;
         startScale = transform.localScale;
-        player = GameObject.Find("Player");
+        player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame

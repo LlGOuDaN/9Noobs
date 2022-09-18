@@ -35,7 +35,7 @@ public class Echo : MonoBehaviour
         
     }
     void Restore() {
-        player_object = GameObject.Find("Player");
+        player_object = GameObject.FindWithTag("Player");
         renderer.color = player_object.GetComponent<DarkLightBlockController>().isWhite ? Color.black : Color.white;
         // GameManager.disableInput = false;
     }
