@@ -3028,6 +3028,14 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5444024965944059139, guid: 694140d1b70460e4ea379ec335503547, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5444024965944059139, guid: 694140d1b70460e4ea379ec335503547, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -480378343
+      objectReference: {fileID: 0}
     - target: {fileID: 5444024965944059140, guid: 694140d1b70460e4ea379ec335503547, type: 3}
       propertyPath: m_Name
       value: Player
