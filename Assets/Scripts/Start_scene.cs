@@ -20,6 +20,6 @@ public class Start_scene : MonoBehaviour
     // switch to another scene
     void evenListener() 
     {
-        SceneManager.LoadScene("MoveTutorial");  
+        SceneManager.LoadScene("0");  
     }
 }
