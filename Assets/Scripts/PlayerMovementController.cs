@@ -146,6 +146,7 @@ public class PlayerMovementController : MonoBehaviour
             }
             transform.position += moveVelocity * (movePower * Time.fixedDeltaTime);
         }
+
         void Jump()
         {
             if ((Input.GetButtonDown("Jump")))
