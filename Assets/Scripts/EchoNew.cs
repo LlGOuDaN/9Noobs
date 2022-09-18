@@ -20,7 +20,7 @@ public class EchoNew : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.K) || Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKey(KeyCode.K) || Input.GetKey(KeyCode.Mouse1))
         {
             renderer.color = player_object.GetComponent<DarkLightBlockController>().isWhite ? Color.white: Color.black ;
             
