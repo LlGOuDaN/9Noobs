@@ -28,7 +28,7 @@ public class PlayerMovementController : MonoBehaviour
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(groundCheck.position, 0.1f);
+            Gizmos.DrawWireSphere(groundCheck.position, 0.15f);
         }
 
         private void Update()
@@ -39,7 +39,7 @@ public class PlayerMovementController : MonoBehaviour
                 {
                     return;
                 }
-                if (IsGrounded() && !doubleJump) 
+                if (IsGrounded()) 
                 {
                     doubleJump = true;    
                 }
@@ -67,7 +67,7 @@ public class PlayerMovementController : MonoBehaviour
 
         private bool IsGrounded()
         {
-            return Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
+            return Physics2D.OverlapCircle(groundCheck.position, 0.15f, groundLayer);
         }
 
         private bool IsDead()
@@ -104,11 +104,15 @@ public class PlayerMovementController : MonoBehaviour
         {
             if ((Input.GetButtonDown("Jump")))
             {
-                if (IsGrounded() || ((Input.GetButtonDown("Jump")) && doubleJump))
+                if (IsGrounded())
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+                } else if (doubleJump)
                 {
                     rb.velocity = new Vector2(rb.velocity.x, jumpPower);
                     doubleJump = false;
                 }
+
             }
         }
 }
