@@ -15,12 +15,16 @@ public class Echo : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+        if (GameManager.disableInput)
+        {
+            return;
+        }
         if (Input.GetKeyDown(KeyCode.K) || Input.GetKeyDown(KeyCode.Mouse1))
         {
             renderer = gameObject.GetComponent<SpriteRenderer>();
             renderer.color = Color.red;
-            GameManager.disableInput = true;
+            // GameManager.disableInput = true;
             // Invoke("Restore", 2f);
         }
 
@@ -33,6 +37,6 @@ public class Echo : MonoBehaviour
     void Restore() {
         player_object = GameObject.Find("Player");
         renderer.color = player_object.GetComponent<DarkLightBlockController>().isWhite ? Color.black : Color.white;
-        GameManager.disableInput = false;
+        // GameManager.disableInput = false;
     }
 }
