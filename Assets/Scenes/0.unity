@@ -1792,7 +1792,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 5
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 7a2a0824a000e4a31a86f8068fdd0809, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -1909,7 +1909,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movePower: 10
-  jumpPower: 20
+  jumpPower: 15
   groundCheck: {fileID: 5979636849857089654}
   groundLayer:
     serializedVersion: 2
