@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     public static bool disableInput = false;
     public void CompleteLevel() {
+        disableInput = true;
         completeLevelUI.SetActive(true);
     }
 
