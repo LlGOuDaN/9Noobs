@@ -15,6 +15,12 @@ public class PlayerMovementController : MonoBehaviour
         bool doubleJump;
         private float horizontalMovement;
 
+        //for PM analytics
+        SendToGoogle STG;
+        public bool data_sent = false;
+        public static int scene_id;
+        public static float t;
+
         [SerializeField] private Transform groundCheck;
         [SerializeField] private LayerMask groundLayer;
         [SerializeField] private LayerMask deadCheckLayer;
@@ -22,6 +28,7 @@ public class PlayerMovementController : MonoBehaviour
         // Start is called before the first frame update
         void Start()
         {
+            t = Time.time;
             rb = GetComponent<Rigidbody2D>();
         }
 
@@ -47,7 +54,17 @@ public class PlayerMovementController : MonoBehaviour
                 Jump();
             }      
             else
-            {
+            {   
+                if (!data_sent){//if player dead, send to google form
+                scene_id = Int32.Parse(SceneManager.GetActiveScene().name);
+                t = Time.time -t;
+
+                STG = FindObjectOfType<SendToGoogle>();
+                STG.Send(scene_id,false,t);
+                data_sent = true;
+
+                SendToGoogle.dead_num +=1;}
+
                 Invoke(nameof(RestartLevel), 0.5f);
             }
         }

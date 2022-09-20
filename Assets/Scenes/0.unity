@@ -1878,12 +1878,13 @@ GameObject:
   - component: {fileID: 5979636850144362794}
   - component: {fileID: 5979636850144362798}
   - component: {fileID: 5979636850144362786}
+  - component: {fileID: 5979636850144362800}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!212 &5979636850144362796
 SpriteRenderer:
@@ -1977,6 +1978,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movePower: 10
   jumpPower: 20
+  data_sent: 0
   groundCheck: {fileID: 5979636849857089654}
   groundLayer:
     serializedVersion: 2
@@ -2000,3 +2002,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5979636850144362800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5979636850144362795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fc2c423c16fe8d40964f4eba5f3fe56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  URL: https://docs.google.com/forms/u/1/d/e/1FAIpQLSewseSf2S69xCMmqs2ZCdr4S4K5n8ZirPYvGt6vLJvA0lLXmQ/formResponse
