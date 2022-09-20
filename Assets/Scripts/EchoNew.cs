@@ -19,7 +19,11 @@ public class EchoNew : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+        if (GameManager.disableInput)
+        {
+            return;
+        }
         if (Input.GetKey(KeyCode.K) || Input.GetKey(KeyCode.Mouse1))
         {
             renderer.color = player_object.GetComponent<DarkLightBlockController>().isWhite ? Color.white: Color.black ;
