@@ -58,36 +58,24 @@ public class PlayerMovementController : MonoBehaviour
                 Jump();
             }      
             else
-            {   
-                if (!data_sent)
-                { 
-                    //if player dead, send to google form
-                    try
-                    {
-                        scene_id = Int32.Parse(SceneManager.GetActiveScene().name);
-                        t = Time.time - t;
-                        STG = FindObjectOfType<SendToGoogle>();
-                        STG.Send(scene_id, false, t); ;
-                        SendToGoogle.dead_num += 1;
-                    }
-                    catch (Exception e)
-                    {
-                        // skip sent 
-                        Console.WriteLine(e);
-                    }
-                    finally
-                    {
-                        data_sent = true;
-                    }
+            {
+                //if player dead, send to google form
+                try
+                {
+                    scene_id = Int32.Parse(SceneManager.GetActiveScene().name);
+                    STG = FindObjectOfType<SendToGoogle>();
+                    STG.Send(scene_id, false, Time.time - t);
+                    SendToGoogle.dead_num += 1;
+                    t = Time.time;
+                }
+                catch (Exception e)
+                {
+                    // skip sent 
+                    Console.WriteLine(e);
                 }
                 transform.position = respawnPosition;
                 isDead = false;
             }
-        }
-
-        private void RestartLevel()
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
         private void FixedUpdate()

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine.Networking;
 using UnityEngine;
 using System;
+using UnityEditor;
+using UnityEngine.Analytics;
 using Random = UnityEngine.Random;
 
 public class SendToGoogle : MonoBehaviour
@@ -10,7 +12,7 @@ public class SendToGoogle : MonoBehaviour
 
 
 [SerializeField] private string URL;
-private long _sessionID;
+private string _sessionID;
 private int _testInt;
 private bool _testBool;
 private float _testFloat=1000;
@@ -27,7 +29,8 @@ public void Send(int scene_id = -1,bool pass = false, float time_duration = -1)
 {
  // Assign variables
 
- _sessionID = DateTime.Now.Ticks;
+ 
+ _sessionID = AnalyticsSessionInfo.userId;
  _testInt =scene_id;
  _testBool = pass;
  _testFloat = time_duration;
