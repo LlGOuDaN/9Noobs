@@ -11,9 +11,11 @@ public class PlayerMovementController : MonoBehaviour
 
         private Rigidbody2D rb;
         private Animator anim;
+        private bool isDead;
         Vector3 movement;
         bool doubleJump;
         private float horizontalMovement;
+        private Vector3 respawnPosition;
 
         [SerializeField] private Transform groundCheck;
         [SerializeField] private LayerMask groundLayer;
@@ -22,6 +24,8 @@ public class PlayerMovementController : MonoBehaviour
         // Start is called before the first frame update
         void Start()
         {
+            respawnPosition = transform.position;
+            isDead = false;
             rb = GetComponent<Rigidbody2D>();
         }
 
@@ -48,13 +52,9 @@ public class PlayerMovementController : MonoBehaviour
             }      
             else
             {
-                Invoke(nameof(RestartLevel), 0.5f);
+                transform.position = respawnPosition;
+                isDead = false;
             }
-        }
-
-        private void RestartLevel()
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
         private void FixedUpdate()
@@ -72,7 +72,22 @@ public class PlayerMovementController : MonoBehaviour
 
         private bool IsDead()
         {
-            return Physics2D.OverlapCircle(groundCheck.position, 0.2f, deadCheckLayer);
+            return Physics2D.OverlapCircle(groundCheck.position, 0.2f, deadCheckLayer) || isDead;
+        }
+
+        private void OnCollisionEnter2D(Collision2D col)
+        {
+            GameObject obj = col.gameObject;
+            Debug.Log(obj);
+            if (obj.tag == "Obstacle")
+            {
+                isDead = true;
+            } else if (obj.tag == "CheckPoint")
+            {
+                respawnPosition = obj.transform.position;
+                obj.GetComponent<SpriteRenderer>().color = Color.green;
+                obj.GetComponent<BoxCollider2D>().enabled = false;
+            }
         }
 
         void Run()

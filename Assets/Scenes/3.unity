@@ -206,7 +206,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &48221018
 BoxCollider2D:
@@ -265,7 +265,7 @@ Transform:
   - {fileID: 673228741}
   - {fileID: 649507977}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &82970378
 PrefabInstance:
@@ -468,7 +468,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6961678493695873276, guid: 71509d509ff14884b9ff5818bf115680, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6961678493695873276, guid: 71509d509ff14884b9ff5818bf115680, type: 3}
       propertyPath: m_LocalScale.x
@@ -550,7 +550,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 775616964303085263, guid: b8c8fee750a96498b913836aa4bb31dd, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 775616964303085263, guid: b8c8fee750a96498b913836aa4bb31dd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1094,7 +1094,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &649507977 stripped
 Transform:
@@ -1326,7 +1326,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &859051024 stripped
 Transform:
@@ -1426,7 +1426,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1120278434
 MonoBehaviour:
@@ -1620,7 +1620,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1435550130
 PrefabInstance:
@@ -1639,7 +1639,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8738738988511168779, guid: 0286ddc20328e42c6a83232cefcd4f26, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8738738988511168779, guid: 0286ddc20328e42c6a83232cefcd4f26, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1720,7 +1720,7 @@ Transform:
   - {fileID: 1115228517}
   - {fileID: 491024057}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1519594353 stripped
 Transform:
@@ -1987,7 +1987,7 @@ Transform:
   - {fileID: 1445808134}
   - {fileID: 2068914085}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1729245956
 PrefabInstance:
@@ -2062,6 +2062,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 465281274d4ce450191745dcb976a305, type: 3}
+--- !u!1001 &1820051212
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 715935012615319816, guid: f657e7b3a77499a4498cac2f5e0f8c1a, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 715935012615319816, guid: f657e7b3a77499a4498cac2f5e0f8c1a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 43.989544
+      objectReference: {fileID: 0}
+    - target: {fileID: 715935012615319816, guid: f657e7b3a77499a4498cac2f5e0f8c1a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.9542327
+      objectReference: {fileID: 0}
+    - target: {fileID: 715935012615319816, guid: f657e7b3a77499a4498cac2f5e0f8c1a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 715935012615319816, guid: f657e7b3a77499a4498cac2f5e0f8c1a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 715935012615319816, guid: f657e7b3a77499a4498cac2f5e0f8c1a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 715935012615319816, guid: f657e7b3a77499a4498cac2f5e0f8c1a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 715935012615319816, guid: f657e7b3a77499a4498cac2f5e0f8c1a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 715935012615319816, guid: f657e7b3a77499a4498cac2f5e0f8c1a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 715935012615319816, guid: f657e7b3a77499a4498cac2f5e0f8c1a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 715935012615319816, guid: f657e7b3a77499a4498cac2f5e0f8c1a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 715935012615319818, guid: f657e7b3a77499a4498cac2f5e0f8c1a, type: 3}
+      propertyPath: m_Name
+      value: CheckPoint
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f657e7b3a77499a4498cac2f5e0f8c1a, type: 3}
 --- !u!4 &1860941067 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8064586343127192333, guid: 465281274d4ce450191745dcb976a305, type: 3}
@@ -2100,7 +2157,7 @@ Transform:
   - {fileID: 665320959}
   - {fileID: 102703746}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2068914085 stripped
 Transform:
