@@ -22,6 +22,9 @@ public class PlayerMovementController : MonoBehaviour
         public bool data_sent = false;
         public static int scene_id;
         public static float t;
+        public static float t_initial;
+        
+        
 
         [SerializeField] private Transform groundCheck;
         [SerializeField] private LayerMask groundLayer;
@@ -31,6 +34,9 @@ public class PlayerMovementController : MonoBehaviour
         void Start()
         {
             t = Time.time;
+
+            t_initial = t;
+            
             rb = GetComponent<Rigidbody2D>();
             isDead = false;
             respawnPosition = transform.position;
@@ -64,7 +70,7 @@ public class PlayerMovementController : MonoBehaviour
                 {
                     scene_id = Int32.Parse(SceneManager.GetActiveScene().name);
                     STG = FindObjectOfType<SendToGoogle>();
-                    STG.Send(scene_id, false, Time.time - t);
+                    STG.Send(scene_id, false, Time.time - t,Time.time-t_initial);
                     SendToGoogle.dead_num += 1;
                     t = Time.time;
                 }
