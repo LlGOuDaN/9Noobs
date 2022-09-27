@@ -7,15 +7,19 @@ using UnityEngine.SceneManagement;
 public class PlayerMovementController : MonoBehaviour
 {
    public float movePower = 10f;
-        public float jumpPower = 15f; //Set Gravity Scale in Rigidbody2D Component to 5
+        public float jumpPower = 20f; //Set Gravity Scale in Rigidbody2D Component to 5
 
         private Rigidbody2D rb;
         private Animator anim;
-        private bool isDead;
         Vector3 movement;
         bool doubleJump;
         private float horizontalMovement;
-        private Vector3 respawnPosition;
+
+        //for PM analytics
+        SendToGoogle STG;
+        public bool data_sent = false;
+        public static int scene_id;
+        public static float t;
 
         [SerializeField] private Transform groundCheck;
         [SerializeField] private LayerMask groundLayer;
@@ -24,8 +28,7 @@ public class PlayerMovementController : MonoBehaviour
         // Start is called before the first frame update
         void Start()
         {
-            respawnPosition = transform.position;
-            isDead = false;
+            t = Time.time;
             rb = GetComponent<Rigidbody2D>();
         }
 
@@ -51,10 +54,24 @@ public class PlayerMovementController : MonoBehaviour
                 Jump();
             }      
             else
-            {
-                transform.position = respawnPosition;
-                isDead = false;
+            {   
+                if (!data_sent){//if player dead, send to google form
+                scene_id = Int32.Parse(SceneManager.GetActiveScene().name);
+                t = Time.time -t;
+
+                STG = FindObjectOfType<SendToGoogle>();
+                STG.Send(scene_id,false,t);
+                data_sent = true;
+
+                SendToGoogle.dead_num +=1;}
+
+                Invoke(nameof(RestartLevel), 0.5f);
             }
+        }
+
+        private void RestartLevel()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
         private void FixedUpdate()
@@ -72,22 +89,7 @@ public class PlayerMovementController : MonoBehaviour
 
         private bool IsDead()
         {
-            return Physics2D.OverlapCircle(groundCheck.position, 0.2f, deadCheckLayer) || isDead;
-        }
-
-        private void OnCollisionEnter2D(Collision2D col)
-        {
-            GameObject obj = col.gameObject;
-            Debug.Log(obj);
-            if (obj.tag == "Obstacle")
-            {
-                isDead = true;
-            } else if (obj.tag == "CheckPoint")
-            {
-                respawnPosition = obj.transform.position;
-                obj.GetComponent<SpriteRenderer>().color = Color.green;
-                obj.GetComponent<BoxCollider2D>().enabled = false;
-            }
+            return Physics2D.OverlapCircle(groundCheck.position, 0.2f, deadCheckLayer);
         }
 
         void Run()
