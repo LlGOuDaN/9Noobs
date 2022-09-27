@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DarkLightMaskAnimation : MonoBehaviour
 {       
-    public float shrinkDuration = 1f;
+    public float shrinkDuration = 3f;
     public GameObject mask;
     public Vector3 TargetScale = new Vector3(14, 7, 1);
     Vector3 startScale;
