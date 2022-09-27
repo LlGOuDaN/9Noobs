@@ -79,7 +79,7 @@ testFloat)
  }
  else
  {
- Debug.Log("Form upload complete!");
+ Debug.Log("Form upload complete(For Player Death)!");
  }
  }
 }
