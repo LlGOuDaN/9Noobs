@@ -1261,5 +1261,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: CheckPoint
       objectReference: {fileID: 0}
+    - target: {fileID: 715935012615319927, guid: f657e7b3a77499a4498cac2f5e0f8c1a, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f657e7b3a77499a4498cac2f5e0f8c1a, type: 3}
