@@ -14,7 +14,9 @@ public class PlayerMovementController : MonoBehaviour
         Vector3 movement;
         bool doubleJump;
         private float horizontalMovement;
-
+        private bool isDead;
+        private Vector3 respawnPosition;
+        
         //for PM analytics
         SendToGoogle STG;
         public bool data_sent = false;
@@ -30,6 +32,8 @@ public class PlayerMovementController : MonoBehaviour
         {
             t = Time.time;
             rb = GetComponent<Rigidbody2D>();
+            isDead = false;
+            respawnPosition = transform.position;
         }
 
         private void OnDrawGizmos()
@@ -55,17 +59,29 @@ public class PlayerMovementController : MonoBehaviour
             }      
             else
             {   
-                if (!data_sent){//if player dead, send to google form
-                scene_id = Int32.Parse(SceneManager.GetActiveScene().name);
-                t = Time.time -t;
-
-                STG = FindObjectOfType<SendToGoogle>();
-                STG.Send(scene_id,false,t);
-                data_sent = true;
-
-                SendToGoogle.dead_num +=1;}
-
-                Invoke(nameof(RestartLevel), 0.5f);
+                if (!data_sent)
+                { 
+                    //if player dead, send to google form
+                    try
+                    {
+                        scene_id = Int32.Parse(SceneManager.GetActiveScene().name);
+                        t = Time.time - t;
+                        STG = FindObjectOfType<SendToGoogle>();
+                        STG.Send(scene_id, false, t); ;
+                        SendToGoogle.dead_num += 1;
+                    }
+                    catch (Exception e)
+                    {
+                        // skip sent 
+                        Console.WriteLine(e);
+                    }
+                    finally
+                    {
+                        data_sent = true;
+                    }
+                }
+                transform.position = respawnPosition;
+                isDead = false;
             }
         }
 
@@ -89,7 +105,7 @@ public class PlayerMovementController : MonoBehaviour
 
         private bool IsDead()
         {
-            return Physics2D.OverlapCircle(groundCheck.position, 0.2f, deadCheckLayer);
+            return Physics2D.OverlapCircle(groundCheck.position, 0.2f, deadCheckLayer) || isDead;
         }
 
         void Run()
@@ -130,6 +146,26 @@ public class PlayerMovementController : MonoBehaviour
                     doubleJump = false;
                 }
 
+            }
+        }
+
+        private void OnCollisionEnter2D(Collision2D col)
+        {
+            GameObject obj = col.gameObject;
+            if (obj.tag == "Obstacle")
+            {
+                isDead = true;
+            }
+        }
+
+        private void OnTriggerEnter2D(Collider2D col)
+        {
+            GameObject obj = col.gameObject; 
+            if (obj.tag == "CheckPoint")
+            {
+                respawnPosition = obj.transform.position;
+                obj.GetComponent<SpriteRenderer>().color = Color.green;
+                obj.GetComponent<BoxCollider2D>().enabled = false;
             }
         }
 }
