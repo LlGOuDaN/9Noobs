@@ -30,8 +30,17 @@ public class TutorialTrapTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Trigger enter.");
+        // Debug.Log("Trigger enter.");
         blackStepTrap.SetActive(true);
+        for(int i = 0; i < blackStepTrap.transform.childCount; ++i){
+            blackStepTrap.transform.GetChild(i).GetComponent<BoxCollider2D>().enabled = true;
+        }
         Invoke("DisplayText", 2.0f);
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        // Debug.Log("Trigger exit.");
+        blackStepTrap.SetActive(false);
     }
 }
