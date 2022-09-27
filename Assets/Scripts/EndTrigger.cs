@@ -24,8 +24,9 @@ public class EndTrigger : MonoBehaviour
 
             //for PM analytics
             STG = FindObjectOfType<SendToGoogle>();
-            float duration = Time.time - PlayerMovementController.t;
-            STG.Send(currentScene, true, duration);//if player pass a certain level, send to google form;
+            //float duration = Time.time - PlayerMovementController.t;
+            
+            STG.Send(currentScene, true, Time.time - PlayerMovementController.t,Time.time-PlayerMovementController.t_initial);//if player pass a certain level, send to google form;
             Debug.Log("Form Upload Complete!(For Passing)");
 
             FindObjectOfType<GameManager>().CompleteLevel();
