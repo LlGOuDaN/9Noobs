@@ -1156,6 +1156,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3893448782465343626, guid: 16ae414b3b1568e4fab7b6908ab5246c, type: 3}
+      propertyPath: gravityMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893448782465343626, guid: 16ae414b3b1568e4fab7b6908ab5246c, type: 3}
+      propertyPath: darkWorldGravityScale
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893448782465343626, guid: 16ae414b3b1568e4fab7b6908ab5246c, type: 3}
+      propertyPath: lightWorldGravityScale
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3893448782465343627, guid: 16ae414b3b1568e4fab7b6908ab5246c, type: 3}
       propertyPath: m_RootOrder
       value: 9

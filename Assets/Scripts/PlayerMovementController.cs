@@ -8,7 +8,7 @@ public class PlayerMovementController : MonoBehaviour
 {
    public float movePower = 10f;
         public float jumpPower = 20f; //Set Gravity Scale in Rigidbody2D Component to 5
-
+        
         private Rigidbody2D rb;
         private Animator anim;
         Vector3 movement;
@@ -16,7 +16,10 @@ public class PlayerMovementController : MonoBehaviour
         private float horizontalMovement;
         private bool isDead;
         private Vector3 respawnPosition;
-        
+        public bool gravityMode;
+        public float darkWorldGravityScale;
+        public float lightWorldGravityScale;
+
         //for PM analytics
         SendToGoogle STG;
         public bool data_sent = false;
@@ -36,10 +39,13 @@ public class PlayerMovementController : MonoBehaviour
             t = Time.time;
 
             t_initial = t;
-            
             rb = GetComponent<Rigidbody2D>();
             isDead = false;
             respawnPosition = transform.position;
+            if (gravityMode)
+            {
+                GetComponent<Rigidbody2D>().gravityScale = darkWorldGravityScale;
+            }
         }
 
         private void OnDrawGizmos()
@@ -62,6 +68,16 @@ public class PlayerMovementController : MonoBehaviour
                 }
                 horizontalMovement = Input.GetAxisRaw("Horizontal");
                 Jump();
+                if (gravityMode)
+                {
+                    if (GetComponent<SpriteRenderer>().color == Color.black)
+                    {
+                        GetComponent<Rigidbody2D>().gravityScale = darkWorldGravityScale;
+                    } else if (GetComponent<SpriteRenderer>().color == Color.white)
+                    {
+                        GetComponent<Rigidbody2D>().gravityScale = lightWorldGravityScale;
+                    }
+                }
             }      
             else
             {
