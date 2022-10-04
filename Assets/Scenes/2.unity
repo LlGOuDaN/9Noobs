@@ -2363,7 +2363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shrinkDuration: 3
   mask: {fileID: 0}
-  TargetScale: {x: 21, y: 21, z: 1}
+  TargetScale: {x: 25, y: 25, z: 1}
 --- !u!1001 &1640534861
 PrefabInstance:
   m_ObjectHideFlags: 0
