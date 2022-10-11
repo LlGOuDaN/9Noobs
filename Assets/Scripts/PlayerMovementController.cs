@@ -99,21 +99,37 @@ public class PlayerMovementController : MonoBehaviour
             else
             {
                 //if player dead, send to google form
-                try
+                if (!data_sent)
                 {
-                    scene_id = Int32.Parse(SceneManager.GetActiveScene().name);
-                    STG = FindObjectOfType<SendToGoogle>();
-                    STG.Send(scene_id, false, Time.time - t,Time.time-t_initial);
-                    SendToGoogle.dead_num += 1;
-                    t = Time.time;
+                    try
+                    {
+                        scene_id = Int32.Parse(SceneManager.GetActiveScene().name);
+                        STG = FindObjectOfType<SendToGoogle>();
+                        STG.Send(scene_id, false, Time.time - t,Time.time-t_initial);
+                        SendToGoogle.dead_num += 1;
+                        t = Time.time;
+                    }
+                    catch (Exception e)
+                    {
+                        // skip sent 
+                        Console.WriteLine(e);
+                    }
+                    data_sent = true;
                 }
-                catch (Exception e)
-                {
-                    // skip sent 
-                    Console.WriteLine(e);
-                }
+                
+                anim.SetTrigger("hurt");
+                Invoke("Respawn", 1f);
+            }
+        }
+
+        private void Respawn()
+        {
+            if (isDead)
+            {
+                anim.SetTrigger("idle");
                 transform.position = respawnPosition;
                 isDead = false;
+                data_sent = false;
             }
         }
 
@@ -132,7 +148,7 @@ public class PlayerMovementController : MonoBehaviour
 
         private bool IsDead()
         {
-            return Physics2D.OverlapCircle(groundCheck.position, 0.2f, deadCheckLayer) || isDead;
+            return isDead;
         }
 
         void Run()
@@ -201,14 +217,18 @@ public class PlayerMovementController : MonoBehaviour
 
         private void OnTriggerEnter2D(Collider2D col)
         {
-            GameObject obj = col.gameObject; 
+            GameObject obj = col.gameObject;
             if (obj.tag == "CheckPoint")
             {
                 respawnPosition = obj.transform.position;
                 obj.GetComponent<SpriteRenderer>().color = Color.green;
                 obj.GetComponent<BoxCollider2D>().enabled = false;
+            } else if (obj.layer == LayerMask.NameToLayer("DeadCheckLayer"))
+            {
+                isDead = true;
             }
         }
+        
 
         public float getT()
         {
