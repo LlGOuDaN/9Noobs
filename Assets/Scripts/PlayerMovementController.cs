@@ -98,6 +98,7 @@ public class PlayerMovementController : MonoBehaviour
             }      
             else
             {
+                GameManager.disableInput = true;
                 //if player dead, send to google form
                 if (!data_sent)
                 {
@@ -130,6 +131,7 @@ public class PlayerMovementController : MonoBehaviour
                 transform.position = respawnPosition;
                 isDead = false;
                 data_sent = false;
+                GameManager.disableInput = false;
             }
         }
 
