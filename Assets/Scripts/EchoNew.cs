@@ -26,7 +26,7 @@ public class EchoNew : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.K) || Input.GetKey(KeyCode.Mouse1))
         {
-            renderer.color = player_object.GetComponent<DarkLightBlockController>().isWhite ? Color.white: Color.black ;
+            renderer.color = player_object.GetComponent<SpriteRenderer>().color==Color.white ? Color.white: Color.black ;
             
             renderer.transform.localScale *=  (1+Time.deltaTime);
         }

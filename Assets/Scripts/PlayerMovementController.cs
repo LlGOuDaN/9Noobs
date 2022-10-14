@@ -46,6 +46,7 @@ public class PlayerMovementController : MonoBehaviour
             {
                 GetComponent<Rigidbody2D>().gravityScale = darkWorldGravityScale;
             }
+            anim = GetComponent<Animator>();
         }
 
         private void OnDrawGizmos()
@@ -64,10 +65,26 @@ public class PlayerMovementController : MonoBehaviour
                 }
                 if (IsGrounded()) 
                 {
-                    doubleJump = true;    
+                    doubleJump = true;
+                    anim.SetBool("isJump", false);
+                }
+                else
+                {
+                    anim.SetBool("isJump", true);
                 }
                 horizontalMovement = Input.GetAxisRaw("Horizontal");
                 Jump();
+                if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    if (GetComponent<SpriteRenderer>().color == Color.black)
+                    {
+                        GetComponent<SpriteRenderer>().color = Color.white;
+                    }
+                    else
+                    {
+                        GetComponent<SpriteRenderer>().color = Color.black;
+                    }
+                }
                 if (gravityMode)
                 {
                     if (GetComponent<SpriteRenderer>().color == Color.black)
@@ -81,22 +98,40 @@ public class PlayerMovementController : MonoBehaviour
             }      
             else
             {
+                GameManager.disableInput = true;
                 //if player dead, send to google form
-                try
+                if (!data_sent)
                 {
-                    scene_id = Int32.Parse(SceneManager.GetActiveScene().name);
-                    STG = FindObjectOfType<SendToGoogle>();
-                    STG.Send(scene_id, false, Time.time - t,Time.time-t_initial);
-                    SendToGoogle.dead_num += 1;
-                    t = Time.time;
+                    try
+                    {
+                        scene_id = Int32.Parse(SceneManager.GetActiveScene().name);
+                        STG = FindObjectOfType<SendToGoogle>();
+                        STG.Send(scene_id, false, Time.time - t,Time.time-t_initial);
+                        SendToGoogle.dead_num += 1;
+                        t = Time.time;
+                    }
+                    catch (Exception e)
+                    {
+                        // skip sent 
+                        Console.WriteLine(e);
+                    }
+                    data_sent = true;
                 }
-                catch (Exception e)
-                {
-                    // skip sent 
-                    Console.WriteLine(e);
-                }
+                
+                anim.SetTrigger("hurt");
+                Invoke("Respawn", 1f);
+            }
+        }
+
+        private void Respawn()
+        {
+            if (isDead)
+            {
+                anim.SetTrigger("idle");
                 transform.position = respawnPosition;
                 isDead = false;
+                data_sent = false;
+                GameManager.disableInput = false;
             }
         }
 
@@ -110,12 +145,12 @@ public class PlayerMovementController : MonoBehaviour
 
         private bool IsGrounded()
         {
-            return Physics2D.OverlapCircle(groundCheck.position, 0.15f, groundLayer);
+            return Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
         }
 
         private bool IsDead()
         {
-            return Physics2D.OverlapCircle(groundCheck.position, 0.2f, deadCheckLayer) || isDead;
+            return isDead;
         }
 
         void Run()
@@ -125,6 +160,11 @@ public class PlayerMovementController : MonoBehaviour
 
             if (horizontalMovement < 0)
             {
+                if(!anim.GetBool("isJump"))
+                {
+                    anim.SetBool("isRun", true);
+                }
+                
                 moveVelocity = Vector3.left;
                 
                 if(localScale.x > 0) {
@@ -134,11 +174,20 @@ public class PlayerMovementController : MonoBehaviour
             }
             if (horizontalMovement > 0)
             {
+                if(!anim.GetBool("isJump"))
+                {
+                    anim.SetBool("isRun", true);
+                }
                 moveVelocity = Vector3.right;
                  if(localScale.x < 0) {
                     localScale.x *= -1f;
                     transform.localScale = localScale;
                 }
+            }
+
+            if (horizontalMovement == 0)
+            {
+                anim.SetBool("isRun", false);
             }
             transform.position += moveVelocity * (movePower * Time.fixedDeltaTime);
         }
@@ -170,12 +219,26 @@ public class PlayerMovementController : MonoBehaviour
 
         private void OnTriggerEnter2D(Collider2D col)
         {
-            GameObject obj = col.gameObject; 
+            GameObject obj = col.gameObject;
             if (obj.tag == "CheckPoint")
             {
                 respawnPosition = obj.transform.position;
                 obj.GetComponent<SpriteRenderer>().color = Color.green;
                 obj.GetComponent<BoxCollider2D>().enabled = false;
+            } else if (obj.layer == LayerMask.NameToLayer("DeadCheckLayer"))
+            {
+                isDead = true;
             }
+        }
+        
+
+        public float getT()
+        {
+            return t;
+        }
+
+        public float getTInitial()
+        {
+            return t_initial;
         }
 }
