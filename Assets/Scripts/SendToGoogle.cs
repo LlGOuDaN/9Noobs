@@ -16,58 +16,67 @@ private int _testInt;
 private bool _testBool;
 private float _testFloat=1000;
 private float _testFloat2 = 1000;
-public static int dead_num;
+    private float _testFloat3 = -1;
+    public static int dead_num;
 public static bool ID_generated = false;
 public static string  playerID;
 
 
-public void Send(int scene_id = -1,bool pass = false, float time_duration = -1,float time_duration_cumulative= -1)
-{
- // Assign variables
-
- 
- //PlayerID is generated in the start() function;
- _sessionID = playerID;
- _testInt =scene_id;
- _testBool = pass;
- _testFloat = time_duration;
- _testFloat2 = time_duration_cumulative;
+    public void Send(int scene_id = -1, bool pass = false, float time_duration = -1, float time_duration_cumulative = -1, float progress = -1)
+    {
+        // Assign variables
 
 
- StartCoroutine(Post(_sessionID.ToString(), _testInt.ToString(), 
-_testBool.ToString(), _testFloat.ToString(),_testFloat2.ToString()));
-
-}
-
-
-private IEnumerator Post(string sessionID, string testInt, string testBool, string
-testFloat,string testFloat2)
-{
- // Create the form and enter responses
- WWWForm form = new WWWForm();
- form.AddField("entry.245026862", sessionID);
- form.AddField("entry.142189542", testInt);
- form.AddField("entry.187928650", testBool);
- form.AddField("entry.584057142", testFloat);
- form.AddField("entry.462510413", testFloat2);
- // Send responses and verify result
- using (UnityWebRequest www = UnityWebRequest.Post(URL, form))
- {
- yield return www.SendWebRequest();
- if (www.result != UnityWebRequest.Result.Success)
- {
- Debug.Log(www.error);
- }
- else
- {
- Debug.Log("Form upload complete(For Player Death)!");
- }
- }
-}
+        //PlayerID is generated in the start() function;
+        _sessionID = playerID;
+        _testInt = scene_id;
+        _testBool = pass;
+        _testFloat = time_duration;
+        _testFloat2 = time_duration_cumulative;
+        _testFloat3 = progress;
 
 
-// Start is called before the first frame update
-void Start()
+        StartCoroutine(Post(_sessionID.ToString(), _testInt.ToString(),
+_testBool.ToString(), _testFloat.ToString(), _testFloat2.ToString(), _testFloat3.ToString()));
+
+    }
+
+
+
+    private IEnumerator Post(string sessionID, string testInt, string testBool, string
+   testFloat, string testFloat2, string testFloat3)
+    {
+        // Create the form and enter responses
+        WWWForm form = new WWWForm();
+        form.AddField("entry.245026862", sessionID);
+        form.AddField("entry.142189542", testInt);
+        form.AddField("entry.187928650", testBool);
+        form.AddField("entry.584057142", testFloat);
+        form.AddField("entry.462510413", testFloat2);
+        form.AddField("entry.1317071364", testFloat3);
+        Debug.Log(PlayerMovementController.maxHeight);
+        Debug.Log(PlayerMovementController.jumpNum);
+  
+        form.AddField("entry.1129178207", PlayerMovementController.maxHeight.ToString());
+        form.AddField("entry.990402071", PlayerMovementController.jumpNum.ToString());
+        // Send responses and verify result
+        using (UnityWebRequest www = UnityWebRequest.Post(URL, form))
+        {
+            yield return www.SendWebRequest();
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                Debug.Log("Form upload complete(For Player Death)!");
+            }
+        }
+    }
+
+
+    // Start is called before the first frame update
+    void Start()
     {  
         if (!ID_generated){//ID is only generated once
         playerID =  System.Guid.NewGuid().ToString();

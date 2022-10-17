@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovementController : MonoBehaviour
 {
+
+
+
    public float movePower = 10f;
         public float jumpPower = 20f; //Set Gravity Scale in Rigidbody2D Component to 5
         
@@ -26,17 +29,25 @@ public class PlayerMovementController : MonoBehaviour
         public static int scene_id;
         public static float t;
         public static float t_initial;
-        
-        
+    public static decimal xPosition;
+    public static float progress;
 
-        [SerializeField] private Transform groundCheck;
+    public static float maxHeight;
+
+    public static int jumpNum;
+
+
+    [SerializeField] private Transform groundCheck;
         [SerializeField] private LayerMask groundLayer;
         [SerializeField] private LayerMask deadCheckLayer;
 
         // Start is called before the first frame update
         void Start()
         {
-            t = Time.time;
+
+        maxHeight = transform.position.y;
+        jumpNum = 0;
+        t = Time.time;
 
             t_initial = t;
             rb = GetComponent<Rigidbody2D>();
@@ -55,74 +66,81 @@ public class PlayerMovementController : MonoBehaviour
             Gizmos.DrawWireSphere(groundCheck.position, 0.15f);
         }
 
-        private void Update()
+
+    private void Update()
+    {
+        if (!IsDead())
         {
-            if (!IsDead())
+            if (GameManager.disableInput)
             {
-                if (GameManager.disableInput)
+                return;
+            }
+            if (IsGrounded())
+            {
+                doubleJump = true;
+                anim.SetBool("isJump", false);
+            }
+            else
+            {
+                anim.SetBool("isJump", true);
+            }
+            horizontalMovement = Input.GetAxisRaw("Horizontal");
+            Jump();
+            if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                if (GetComponent<SpriteRenderer>().color == Color.black)
                 {
-                    return;
-                }
-                if (IsGrounded()) 
-                {
-                    doubleJump = true;
-                    anim.SetBool("isJump", false);
+                    GetComponent<SpriteRenderer>().color = Color.white;
                 }
                 else
                 {
-                    anim.SetBool("isJump", true);
+                    GetComponent<SpriteRenderer>().color = Color.black;
                 }
-                horizontalMovement = Input.GetAxisRaw("Horizontal");
-                Jump();
-                if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.Mouse0))
-                {
-                    if (GetComponent<SpriteRenderer>().color == Color.black)
-                    {
-                        GetComponent<SpriteRenderer>().color = Color.white;
-                    }
-                    else
-                    {
-                        GetComponent<SpriteRenderer>().color = Color.black;
-                    }
-                }
-                if (gravityMode)
-                {
-                    if (GetComponent<SpriteRenderer>().color == Color.black)
-                    {
-                        GetComponent<Rigidbody2D>().gravityScale = darkWorldGravityScale;
-                    } else if (GetComponent<SpriteRenderer>().color == Color.white)
-                    {
-                        GetComponent<Rigidbody2D>().gravityScale = lightWorldGravityScale;
-                    }
-                }
-            }      
-            else
+            }
+            if (gravityMode)
             {
-                GameManager.disableInput = true;
-                //if player dead, send to google form
-                if (!data_sent)
+                if (GetComponent<SpriteRenderer>().color == Color.black)
                 {
-                    try
-                    {
-                        scene_id = Int32.Parse(SceneManager.GetActiveScene().name);
-                        STG = FindObjectOfType<SendToGoogle>();
-                        STG.Send(scene_id, false, Time.time - t,Time.time-t_initial);
-                        SendToGoogle.dead_num += 1;
-                        t = Time.time;
-                    }
-                    catch (Exception e)
-                    {
-                        // skip sent 
-                        Console.WriteLine(e);
-                    }
-                    data_sent = true;
+                    GetComponent<Rigidbody2D>().gravityScale = darkWorldGravityScale;
                 }
-                
-                anim.SetTrigger("hurt");
-                Invoke("Respawn", 1f);
+                else if (GetComponent<SpriteRenderer>().color == Color.white)
+                {
+                    GetComponent<Rigidbody2D>().gravityScale = lightWorldGravityScale;
+                }
             }
         }
+        else
+        {
+            GameManager.disableInput = true;
+            //if player dead, send to google form
+            if (!data_sent)
+            {
+                try
+                {
+                    float lengthOfMap = EndTrigger.end_x - respawnPosition[0];
+                    //recording/calculating progress
+                    progress = (transform.position[0] - respawnPosition[0]) / lengthOfMap;
+                    scene_id = Int32.Parse(SceneManager.GetActiveScene().name);
+                    STG = FindObjectOfType<SendToGoogle>();
+                    STG.Send(scene_id, false, Time.time - t, Time.time - t_initial,progress:progress);
+                    SendToGoogle.dead_num += 1;
+                    t = Time.time;
+                }
+                catch (Exception e)
+                {
+                    // skip sent 
+                    Console.WriteLine(e);
+                }
+                data_sent = true;
+            }
 
+            anim.SetTrigger("hurt");
+            Invoke("Respawn", 1f);
+        }
+    }
+
+
+  
         private void Respawn()
         {
             if (isDead)
@@ -137,7 +155,13 @@ public class PlayerMovementController : MonoBehaviour
 
         private void FixedUpdate()
         {
-            if (!IsDead() && !GameManager.disableInput)
+        var h = transform.position.y;
+        if (h > maxHeight)
+        {
+            maxHeight = h;
+
+        }
+        if (!IsDead() && !GameManager.disableInput)
             {
                 Run();
             }
@@ -198,10 +222,12 @@ public class PlayerMovementController : MonoBehaviour
             {
                 if (IsGrounded())
                 {
-                    rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+                jumpNum++;
+                rb.velocity = new Vector2(rb.velocity.x, jumpPower);
                 } else if (doubleJump)
                 {
-                    rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+                jumpNum++;
+                rb.velocity = new Vector2(rb.velocity.x, jumpPower);
                     doubleJump = false;
                 }
 
