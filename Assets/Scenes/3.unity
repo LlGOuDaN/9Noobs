@@ -2565,11 +2565,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4454004043754450689, guid: 6d2baed77e41f4fa6ae4fdf32fea4fe5, type: 3}
       propertyPath: m_Text
-      value: REPLAY
+      value: NEXT LEVEL
       objectReference: {fileID: 0}
     - target: {fileID: 4454004044172049437, guid: 6d2baed77e41f4fa6ae4fdf32fea4fe5, type: 3}
       propertyPath: m_Text
-      value: Game Finished
+      value: COMPLETE
       objectReference: {fileID: 0}
     - target: {fileID: 4454004044334685792, guid: 6d2baed77e41f4fa6ae4fdf32fea4fe5, type: 3}
       propertyPath: m_SizeDelta.x
@@ -2585,7 +2585,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4454004044334685799, guid: 6d2baed77e41f4fa6ae4fdf32fea4fe5, type: 3}
       propertyPath: m_Text
-      value: Congratulations!
+      value: LEVEL
       objectReference: {fileID: 0}
     - target: {fileID: 8308797605355488713, guid: 6d2baed77e41f4fa6ae4fdf32fea4fe5, type: 3}
       propertyPath: m_Pivot.x
