@@ -2851,6 +2851,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeathTutorial
       objectReference: {fileID: 0}
+    - target: {fileID: 1968405773484987231, guid: 1673781b39c484b8d84db8edb573b408, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1968405774172011442, guid: 1673781b39c484b8d84db8edb573b408, type: 3}
       propertyPath: m_Color.b
       value: 0.9150943

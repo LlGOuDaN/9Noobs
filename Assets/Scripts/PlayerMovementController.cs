@@ -158,11 +158,11 @@ public class PlayerMovementController : MonoBehaviour
 
             anim.SetBool("isDead", true);
 
-            rb.velocity = new Vector2(0, 0);
+            rb.velocity = new Vector3(0, 0,0);
 
             Invoke("showDeathNote", 1);
 
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.R) && !GameManager.disbaleRespawn)
             {
                 Respawn();
             }
@@ -180,6 +180,7 @@ public class PlayerMovementController : MonoBehaviour
             isDead = false;
             data_sent = false;
             GameManager.disableInput = false;
+            GameManager.disbaleRespawn = true;
             deathNoteUI.SetActive(false);
         }
     }

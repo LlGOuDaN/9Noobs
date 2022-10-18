@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public GameObject completeLevelUI;
 
     public static bool disableInput = false;
+    public static bool disbaleRespawn = true;
     public void CompleteLevel() {
         disableInput = true;
         completeLevelUI.SetActive(true);

@@ -40,4 +40,10 @@ public class Destory : StateMachineBehaviour
         animator.SetBool("isDead", false);
         base.OnStateExit(animator, stateInfo, layerIndex);
     }
+    
+    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        GameManager.disbaleRespawn = false;
+        base.OnStateExit(animator, stateInfo, layerIndex);
+    }
 }
