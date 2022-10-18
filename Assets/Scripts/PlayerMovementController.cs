@@ -6,26 +6,26 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovementController : MonoBehaviour
 {
-   public float movePower = 10f;
-        public float jumpPower = 20f; //Set Gravity Scale in Rigidbody2D Component to 5
-        
-        private Rigidbody2D rb;
-        private Animator anim;
-        Vector3 movement;
-        bool doubleJump;
-        private float horizontalMovement;
-        private bool isDead;
-        private Vector3 respawnPosition;
-        public bool gravityMode;
-        public float darkWorldGravityScale;
-        public float lightWorldGravityScale;
+    public float movePower = 10f;
+    public float jumpPower = 20f; //Set Gravity Scale in Rigidbody2D Component to 5
 
-        //for PM analytics
-        SendToGoogle STG;
-        public bool data_sent = false;
-        public static int scene_id;
-        public static float t;
-        public static float t_initial;
+    private Rigidbody2D rb;
+    private Animator anim;
+    Vector3 movement;
+    bool doubleJump;
+    private float horizontalMovement;
+    private bool isDead;
+    private Vector3 respawnPosition;
+    public bool gravityMode;
+    public float darkWorldGravityScale;
+    public float lightWorldGravityScale;
+
+    //for PM analytics
+    SendToGoogle STG;
+    public bool data_sent = false;
+    public static int scene_id;
+    public static float t;
+    public static float t_initial;
     public static decimal xPosition;
     public static float progress;
 
@@ -34,35 +34,35 @@ public class PlayerMovementController : MonoBehaviour
     public static int jumpNum;
 
 
-        [SerializeField] private Transform groundCheck;
-        [SerializeField] private LayerMask groundLayer;
-        [SerializeField] private LayerMask deadCheckLayer;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask deadCheckLayer;
 
-        // Start is called before the first frame update
-        void Start()
-        {
-
+    // Start is called before the first frame update
+    void Start()
+    {
         maxHeight = transform.position.y;
         jumpNum = 0;
         t = Time.time;
 
-            t_initial = t;
-            rb = GetComponent<Rigidbody2D>();
-            isDead = false;
-            respawnPosition = transform.position;
-            if (gravityMode)
-            {
-                GetComponent<Rigidbody2D>().gravityScale = darkWorldGravityScale;
-            }
-            anim = GetComponent<Animator>();
-            GameManager.disableInput = false;
+        t_initial = t;
+        rb = GetComponent<Rigidbody2D>();
+        isDead = false;
+        respawnPosition = transform.position;
+        if (gravityMode)
+        {
+            GetComponent<Rigidbody2D>().gravityScale = darkWorldGravityScale;
         }
 
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(groundCheck.position, 0.15f);
-        }
+        anim = GetComponent<Animator>();
+        GameManager.disableInput = false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(groundCheck.position, 0.15f);
+    }
 
 
     private void Update()
@@ -73,6 +73,7 @@ public class PlayerMovementController : MonoBehaviour
             {
                 return;
             }
+
             if (IsGrounded())
             {
                 doubleJump = true;
@@ -82,6 +83,7 @@ public class PlayerMovementController : MonoBehaviour
             {
                 anim.SetBool("isJump", true);
             }
+
             horizontalMovement = Input.GetAxisRaw("Horizontal");
             Jump();
             if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.Mouse0))
@@ -95,6 +97,7 @@ public class PlayerMovementController : MonoBehaviour
                     GetComponent<SpriteRenderer>().color = Color.black;
                 }
             }
+
             if (gravityMode)
             {
                 if (GetComponent<SpriteRenderer>().color == Color.black)
@@ -110,9 +113,11 @@ public class PlayerMovementController : MonoBehaviour
         else
         {
             GameManager.disableInput = true;
-            if (Input.GetKeyDown(KeyCode.R)) {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
                 Respawn();
             }
+
             //if player dead, send to google form
             if (!data_sent)
             {
@@ -122,14 +127,17 @@ public class PlayerMovementController : MonoBehaviour
                     float heightOfMap = respawnPosition[1] - EndTrigger.end_y;
                     //recording/calculating progress
                     scene_id = Int32.Parse(SceneManager.GetActiveScene().name);
-                    if(scene_id == 4){
+                    if (scene_id == 4)
+                    {
                         progress = (respawnPosition[1] - transform.position[1]) / heightOfMap;
                     }
-                    else{
+                    else
+                    {
                         progress = (transform.position[0] - respawnPosition[0]) / lengthOfMap;
                     }
+
                     STG = FindObjectOfType<SendToGoogle>();
-                    STG.Send(scene_id, false, Time.time - t, Time.time - t_initial,progress:progress);
+                    STG.Send(scene_id, false, Time.time - t, Time.time - t_initial, progress: progress);
                     SendToGoogle.dead_num += 1;
                     t = Time.time;
                 }
@@ -138,6 +146,7 @@ public class PlayerMovementController : MonoBehaviour
                     // skip sent 
                     Console.WriteLine(e);
                 }
+
                 data_sent = true;
             }
 
@@ -147,131 +156,136 @@ public class PlayerMovementController : MonoBehaviour
     }
 
 
-  
-        private void Respawn()
+    private void Respawn()
+    {
+        if (isDead)
         {
-            if (isDead)
-            {
-                anim.Play("Idle");
-                transform.position = respawnPosition;
-                isDead = false;
-                data_sent = false;
-                GameManager.disableInput = false;
-            }
+            anim.Play("Idle");
+            transform.position = respawnPosition;
+            isDead = false;
+            data_sent = false;
+            GameManager.disableInput = false;
         }
+    }
 
-        private void FixedUpdate()
-        {
+    private void FixedUpdate()
+    {
         var h = transform.position.y;
         if (h > maxHeight)
         {
             maxHeight = h;
-
         }
+
         if (!IsDead() && !GameManager.disableInput)
+        {
+            Run();
+        }
+    }
+
+    private bool IsGrounded()
+    {
+        return Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
+    }
+
+    private bool IsDead()
+    {
+        return isDead;
+    }
+
+    void Run()
+    {
+        Vector3 moveVelocity = Vector3.zero;
+        Vector3 localScale = transform.localScale;
+
+        if (horizontalMovement < 0)
+        {
+            if (!anim.GetBool("isJump"))
             {
-                Run();
+                anim.SetBool("isRun", true);
+            }
+
+            moveVelocity = Vector3.left;
+
+            if (localScale.x > 0)
+            {
+                localScale.x *= -1f;
+                transform.localScale = localScale;
             }
         }
 
-        private bool IsGrounded()
+        if (horizontalMovement > 0)
         {
-            return Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
-        }
-
-        private bool IsDead()
-        {
-            return isDead;
-        }
-
-        void Run()
-        {
-            Vector3 moveVelocity = Vector3.zero;
-            Vector3 localScale = transform.localScale;
-
-            if (horizontalMovement < 0)
+            if (!anim.GetBool("isJump"))
             {
-                if(!anim.GetBool("isJump"))
-                {
-                    anim.SetBool("isRun", true);
-                }
-                
-                moveVelocity = Vector3.left;
-                
-                if(localScale.x > 0) {
-                    localScale.x *= -1f;
-                    transform.localScale = localScale;
-                }
-            }
-            if (horizontalMovement > 0)
-            {
-                if(!anim.GetBool("isJump"))
-                {
-                    anim.SetBool("isRun", true);
-                }
-                moveVelocity = Vector3.right;
-                 if(localScale.x < 0) {
-                    localScale.x *= -1f;
-                    transform.localScale = localScale;
-                }
+                anim.SetBool("isRun", true);
             }
 
-            if (horizontalMovement == 0)
+            moveVelocity = Vector3.right;
+            if (localScale.x < 0)
             {
-                anim.SetBool("isRun", false);
+                localScale.x *= -1f;
+                transform.localScale = localScale;
             }
-            transform.position += moveVelocity * (movePower * Time.fixedDeltaTime);
         }
 
-        void Jump()
+        if (horizontalMovement == 0)
         {
-            if ((Input.GetButtonDown("Jump")))
+            anim.SetBool("isRun", false);
+        }
+
+        transform.position += moveVelocity * (movePower * Time.fixedDeltaTime);
+    }
+
+    void Jump()
+    {
+        if ((Input.GetButtonDown("Jump")))
+        {
+            if (IsGrounded())
             {
-                if (IsGrounded())
-                {
                 jumpNum++;
                 rb.velocity = new Vector2(rb.velocity.x, jumpPower);
-                } else if (doubleJump)
-                {
+            }
+            else if (doubleJump)
+            {
                 jumpNum++;
                 rb.velocity = new Vector2(rb.velocity.x, jumpPower);
-                    doubleJump = false;
-                }
-
+                doubleJump = false;
             }
         }
+    }
 
-        private void OnCollisionEnter2D(Collision2D col)
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        GameObject obj = col.gameObject;
+        if (obj.tag == "Obstacle")
         {
-            GameObject obj = col.gameObject;
-            if (obj.tag == "Obstacle")
-            {
-                isDead = true;
-            }
+            isDead = true;
         }
+    }
 
-        private void OnTriggerEnter2D(Collider2D col)
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        GameObject obj = col.gameObject;
+        if (obj.tag == "CheckPoint")
         {
-            GameObject obj = col.gameObject;
-            if (obj.tag == "CheckPoint")
-            {
-                respawnPosition = obj.transform.position;
-                obj.GetComponent<SpriteRenderer>().color = Color.green;
-                obj.GetComponent<BoxCollider2D>().enabled = false;
-            } else if (obj.layer == LayerMask.NameToLayer("DeadCheckLayer"))
-            {
-                isDead = true;
-            }
+            respawnPosition = obj.transform.position;
+            obj.GetComponent<SpriteRenderer>().color = Color.green;
+            obj.GetComponent<BoxCollider2D>().enabled = false;
         }
-        
+        else if (obj.layer == LayerMask.NameToLayer("DeadCheckLayer"))
+        {
+            isDead = true;
+        }
+    }
 
-        public float getT()
-        {
-            return t;
-        }
 
-        public float getTInitial()
-        {
-            return t_initial;
-        }
+    public float getT()
+    {
+        return t;
+    }
+
+    public float getTInitial()
+    {
+        return t_initial;
+    }
 }
