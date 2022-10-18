@@ -39,6 +39,8 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask deadCheckLayer;
 
+    public GameObject deathNoteUI;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -58,6 +60,7 @@ public class PlayerMovementController : MonoBehaviour
 
         anim = GetComponent<Animator>();
         GameManager.disableInput = false;
+        deathNoteUI.SetActive(false);
     }
 
     private void OnDrawGizmos()
@@ -156,6 +159,9 @@ public class PlayerMovementController : MonoBehaviour
             anim.SetBool("isDead", true);
 
             rb.velocity = new Vector2(0, 0);
+
+            Invoke("showDeathNote", 1);
+
             if (Input.GetKeyDown(KeyCode.R))
             {
                 Respawn();
@@ -174,6 +180,7 @@ public class PlayerMovementController : MonoBehaviour
             isDead = false;
             data_sent = false;
             GameManager.disableInput = false;
+            deathNoteUI.SetActive(false);
         }
     }
 
@@ -296,5 +303,12 @@ public class PlayerMovementController : MonoBehaviour
     public float getTInitial()
     {
         return t_initial;
+    }
+
+    void showDeathNote() {
+        if (isDead) {
+            deathNoteUI.SetActive(true);
+        }
+        
     }
 }
