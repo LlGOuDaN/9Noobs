@@ -6,9 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovementController : MonoBehaviour
 {
-
-
-
    public float movePower = 10f;
         public float jumpPower = 20f; //Set Gravity Scale in Rigidbody2D Component to 5
         
@@ -37,7 +34,7 @@ public class PlayerMovementController : MonoBehaviour
     public static int jumpNum;
 
 
-    [SerializeField] private Transform groundCheck;
+        [SerializeField] private Transform groundCheck;
         [SerializeField] private LayerMask groundLayer;
         [SerializeField] private LayerMask deadCheckLayer;
 
@@ -58,6 +55,7 @@ public class PlayerMovementController : MonoBehaviour
                 GetComponent<Rigidbody2D>().gravityScale = darkWorldGravityScale;
             }
             anim = GetComponent<Animator>();
+            GameManager.disableInput = false;
         }
 
         private void OnDrawGizmos()
@@ -112,6 +110,9 @@ public class PlayerMovementController : MonoBehaviour
         else
         {
             GameManager.disableInput = true;
+            if (Input.GetKeyDown(KeyCode.R)) {
+                Respawn();
+            }
             //if player dead, send to google form
             if (!data_sent)
             {
@@ -134,8 +135,8 @@ public class PlayerMovementController : MonoBehaviour
                 data_sent = true;
             }
 
-            anim.SetTrigger("hurt");
-            Invoke("Respawn", 1f);
+            anim.SetBool("isDead", true);
+            rb.velocity = new Vector2(0, 0);
         }
     }
 
@@ -145,7 +146,7 @@ public class PlayerMovementController : MonoBehaviour
         {
             if (isDead)
             {
-                anim.SetTrigger("idle");
+                anim.Play("Idle");
                 transform.position = respawnPosition;
                 isDead = false;
                 data_sent = false;
