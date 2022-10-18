@@ -47,6 +47,7 @@ public class PlayerMovementController : MonoBehaviour
                 GetComponent<Rigidbody2D>().gravityScale = darkWorldGravityScale;
             }
             anim = GetComponent<Animator>();
+            GameManager.disableInput = false;
         }
 
         private void OnDrawGizmos()
@@ -85,6 +86,7 @@ public class PlayerMovementController : MonoBehaviour
                         GetComponent<SpriteRenderer>().color = Color.black;
                     }
                 }
+                
                 if (gravityMode)
                 {
                     if (GetComponent<SpriteRenderer>().color == Color.black)
@@ -100,6 +102,10 @@ public class PlayerMovementController : MonoBehaviour
             {
                 GameManager.disableInput = true;
                 //if player dead, send to google form
+                if (Input.GetKeyDown(KeyCode.R))
+                {
+                    Respawn();
+                }
                 if (!data_sent)
                 {
                     try
@@ -118,8 +124,8 @@ public class PlayerMovementController : MonoBehaviour
                     data_sent = true;
                 }
                 
-                anim.SetTrigger("hurt");
-                Invoke("Respawn", 1f);
+                anim.SetBool("isDead", true);
+                rb.velocity = new Vector2(0,0);
             }
         }
 
@@ -127,7 +133,7 @@ public class PlayerMovementController : MonoBehaviour
         {
             if (isDead)
             {
-                anim.SetTrigger("idle");
+                anim.Play("Idle");
                 transform.position = respawnPosition;
                 isDead = false;
                 data_sent = false;
@@ -231,7 +237,6 @@ public class PlayerMovementController : MonoBehaviour
             }
         }
         
-
         public float getT()
         {
             return t;
