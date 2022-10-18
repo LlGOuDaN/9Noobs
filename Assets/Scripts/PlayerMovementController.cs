@@ -16,6 +16,7 @@ public class PlayerMovementController : MonoBehaviour
     private float horizontalMovement;
     private bool isDead;
     private Vector3 respawnPosition;
+    private Vector3 respawnPositionInitial;
     public bool gravityMode;
     public float darkWorldGravityScale;
     public float lightWorldGravityScale;
@@ -30,7 +31,7 @@ public class PlayerMovementController : MonoBehaviour
     public static float progress;
 
     public static float maxHeight;
-
+     
     public static int jumpNum;
 
 
@@ -49,6 +50,7 @@ public class PlayerMovementController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         isDead = false;
         respawnPosition = transform.position;
+        respawnPositionInitial = transform.position;
         if (gravityMode)
         {
             GetComponent<Rigidbody2D>().gravityScale = darkWorldGravityScale;
@@ -66,7 +68,8 @@ public class PlayerMovementController : MonoBehaviour
 
 
     private void Update()
-    {
+    {   
+        
         if (!IsDead())
         {
             if (GameManager.disableInput)
@@ -113,28 +116,28 @@ public class PlayerMovementController : MonoBehaviour
         else
         {
             GameManager.disableInput = true;
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                Respawn();
-            }
+            
 
             //if player dead, send to google form
             if (!data_sent)
             {
                 try
                 {
-                    float lengthOfMap = EndTrigger.end_x - respawnPosition[0];
-                    float heightOfMap = respawnPosition[1] - EndTrigger.end_y;
+                    float lengthOfMap = EndTrigger.end_x - respawnPositionInitial[0];
+                    float heightOfMap = respawnPositionInitial[1] - EndTrigger.end_y;
                     //recording/calculating progress
                     scene_id = Int32.Parse(SceneManager.GetActiveScene().name);
                     if (scene_id == 4)
                     {
-                        progress = (respawnPosition[1] - transform.position[1]) / heightOfMap;
+                        progress = (respawnPositionInitial[1] - transform.position[1]) / heightOfMap;
                     }
                     else
                     {
-                        progress = (transform.position[0] - respawnPosition[0]) / lengthOfMap;
+                        progress = (transform.position[0] - respawnPositionInitial[0]) / lengthOfMap;
                     }
+                    Debug.Log(transform.position);
+                    Debug.Log("NMSL");
+                    Debug.Log(respawnPosition);
 
                     STG = FindObjectOfType<SendToGoogle>();
                     STG.Send(scene_id, false, Time.time - t, Time.time - t_initial, progress: progress);
@@ -151,7 +154,12 @@ public class PlayerMovementController : MonoBehaviour
             }
 
             anim.SetBool("isDead", true);
+
             rb.velocity = new Vector2(0, 0);
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                Respawn();
+            }
         }
     }
 
@@ -162,6 +170,7 @@ public class PlayerMovementController : MonoBehaviour
         {
             anim.Play("Idle");
             transform.position = respawnPosition;
+            Debug.Log("This is Respawn");
             isDead = false;
             data_sent = false;
             GameManager.disableInput = false;
