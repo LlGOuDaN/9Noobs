@@ -12,9 +12,11 @@ public class EndTrigger : MonoBehaviour
 {
 
     public static float end_x = 0;
+    public static float end_y = 0;
     void Start()
     {
         end_x = transform.position[0]; //get x position of end point 
+        end_y = transform.position[1]; //get y position of end point 
 
     }
     SendToGoogle STG;

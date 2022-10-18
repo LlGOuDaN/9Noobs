@@ -118,9 +118,15 @@ public class PlayerMovementController : MonoBehaviour
                 try
                 {
                     float lengthOfMap = EndTrigger.end_x - respawnPosition[0];
+                    float heightOfMap = respawnPosition[1] - EndTrigger.end_y;
                     //recording/calculating progress
-                    progress = (transform.position[0] - respawnPosition[0]) / lengthOfMap;
                     scene_id = Int32.Parse(SceneManager.GetActiveScene().name);
+                    if(scene_id == 4){
+                        progress = (respawnPosition[1] - transform.position[1]) / heightOfMap;
+                    }
+                    else{
+                        progress = (transform.position[0] - respawnPosition[0]) / lengthOfMap;
+                    }
                     STG = FindObjectOfType<SendToGoogle>();
                     STG.Send(scene_id, false, Time.time - t, Time.time - t_initial,progress:progress);
                     SendToGoogle.dead_num += 1;
