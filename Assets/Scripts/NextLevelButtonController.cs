@@ -10,8 +10,10 @@ public class NextLevelButtonController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {   
+        Debug.Log("button initialized");
         Button btn = transform.GetComponent<Button>();
-        btn.onClick.AddListener(evenListener);
+        btn.onClick.AddListener(eventListener);
+        Debug.Log("eventListener added");
     }
 
     // Update is called once per frame
@@ -19,10 +21,10 @@ public class NextLevelButtonController : MonoBehaviour
 
 
     // switch to another scene
-    void evenListener() 
+    void eventListener() 
     {   
         int currentScene = Int32.Parse(SceneManager.GetActiveScene().name);
-        Debug.Log(currentScene);
+        Debug.Log("Next level button clicked: current scene " + currentScene);
         if (currentScene == GameManager.lastLevel) {
             Debug.Log("Loading first scene");
             SceneManager.LoadScene("0");  

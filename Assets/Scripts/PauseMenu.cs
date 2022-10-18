@@ -25,6 +25,7 @@ public class PauseMenu : MonoBehaviour
         PauseMenuUI.SetActive(false);
         Time.timeScale = 1.0f;
         GameIsPaused = false;
+        GameManager.disableInput = false;
     }
 
     public void Pause()
@@ -32,6 +33,7 @@ public class PauseMenu : MonoBehaviour
         PauseMenuUI.SetActive(true);
         Time.timeScale = 0.0f;
         GameIsPaused = true;
+        GameManager.disableInput = true;
     }
 
     public void Menu()
