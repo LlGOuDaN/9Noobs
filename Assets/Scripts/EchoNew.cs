@@ -24,13 +24,13 @@ public class EchoNew : MonoBehaviour
         {
             return;
         }
-        if (Input.GetKey(KeyCode.K) || Input.GetKey(KeyCode.Mouse1))
+        if (Input.GetKey(KeyCode.K) || Input.GetKey(KeyCode.E))
         {
             renderer.color = player_object.GetComponent<SpriteRenderer>().color==Color.white ? Color.white: Color.black ;
             
             renderer.transform.localScale *=  (1+Time.deltaTime);
         }
-        if (Input.GetKeyUp(KeyCode.K) || Input.GetKeyUp(KeyCode.Mouse1))
+        if (Input.GetKeyUp(KeyCode.K) || Input.GetKeyUp(KeyCode.E))
         {
             Restore();
         }

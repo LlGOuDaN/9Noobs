@@ -22,7 +22,7 @@ public class DarkLightBlockController : MonoBehaviour
         {
             return;
         }
-        if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.W))
         {
             isWhite = !isWhite;
             ChangeColor();
