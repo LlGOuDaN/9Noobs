@@ -92,7 +92,7 @@ public class PlayerMovementController : MonoBehaviour
 
             horizontalMovement = Input.GetAxisRaw("Horizontal");
             Jump();
-            if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.W))
             {
                 if (GetComponent<SpriteRenderer>().color == Color.black)
                 {
