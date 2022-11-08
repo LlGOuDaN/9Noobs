@@ -25,6 +25,10 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public bool isEnd() {
+        return gameHasEnded;
+    }
+
     void Restart() {
         Debug.Log("I am here");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
