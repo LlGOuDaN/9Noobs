@@ -30,6 +30,11 @@ public class LevelControl : MonoBehaviour
         SceneManager.LoadScene("4");
     }
 
+    public void scene5()
+    {
+        SceneManager.LoadScene("5");
+    }
+
     public void back()
     {
         SceneManager.LoadScene("MainMenu");
