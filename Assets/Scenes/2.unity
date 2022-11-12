@@ -1084,6 +1084,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be6778cb33a1c464987752e0739e838b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &346790310
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 346790312}
+  - component: {fileID: 346790311}
+  m_Layer: 0
+  m_Name: WorldSwitchController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &346790311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346790310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dee8f1616a1e844469f3549502fd7686, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &346790312
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346790310}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 104.68309, y: -105.07695, z: -1.3975883}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 23
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &375598434 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6368186790000359624, guid: ad1d4f44f31fc4778998ca47ce145394, type: 3}

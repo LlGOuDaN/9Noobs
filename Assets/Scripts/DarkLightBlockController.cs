@@ -22,7 +22,8 @@ public class DarkLightBlockController : MonoBehaviour
         {
             return;
         }
-        if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.W))
+
+        if(WorldSwitchController.isSwitch)
         {
             isWhite = !isWhite;
             ChangeColor();

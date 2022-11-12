@@ -7,6 +7,10 @@ public class EchoNew : MonoBehaviour
     private GameObject player_object;
     private SpriteRenderer renderer;
     private Vector3 scale;
+
+    private float echoTime;
+
+    private bool isKeyDown;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,16 +28,27 @@ public class EchoNew : MonoBehaviour
         {
             return;
         }
-        if (Input.GetKey(KeyCode.K) || Input.GetKey(KeyCode.E))
-        {
+
+        // record current time to evaluates we are switching or echoing
+        if (Input.GetKeyDown(KeyCode.J)) {
+           echoTime = Time.time;
+           isKeyDown = true;
+        } 
+
+        // it's a long press, echo!
+        if(isKeyDown && Time.time - echoTime > 0.2){
             renderer.color = player_object.GetComponent<SpriteRenderer>().color==Color.white ? Color.white: Color.black ;
-            
             renderer.transform.localScale *=  (1+Time.deltaTime);
         }
-        if (Input.GetKeyUp(KeyCode.K) || Input.GetKeyUp(KeyCode.E))
+
+        // echo finish and restore
+        if (Input.GetKeyUp(KeyCode.J) || Input.GetKeyUp(KeyCode.Q))
         {
+            isKeyDown = false;
             Restore();
         }
+
+        
         
     }
 
