@@ -34,10 +34,18 @@ public class PlayerMovementController : MonoBehaviour
      
     public static int jumpNum;
 
+    private bool canDash = true;
+    private bool isDashing;
+    private float dashingPower = 24f;
+    private float dashingTime = 0.2f;
+    private float dashingCooldown = 1f;
+
 
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask deadCheckLayer;
+
+    [SerializeField] private TrailRenderer tr;
 
     public GameObject deathNoteUI;
 
@@ -115,6 +123,11 @@ public class PlayerMovementController : MonoBehaviour
                 {
                     GetComponent<Rigidbody2D>().gravityScale = lightWorldGravityScale;
                 }
+            }
+
+            if(Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+            {
+                StartCoroutine(Dash());
             }
         }
         else
@@ -296,6 +309,21 @@ public class PlayerMovementController : MonoBehaviour
         }
     }
 
+    private IEnumerator Dash()
+    {
+        canDash = false;
+        isDashing = true;
+        float originalGravity=rb.gravityScale;
+        rb.gravityScale=0f;
+        rb.velocity=new Vector2(transform.localScale.x*dashingPower, 0f);
+        tr.emitting =true;
+        yield return new WaitForSeconds(dashingTime);
+        tr.emitting=false;
+        rb.gravityScale=originalGravity;
+        isDashing=false;
+        yield return new WaitForSeconds(dashingCooldown);
+        canDash=true;
+    }
 
     public float getT()
     {
