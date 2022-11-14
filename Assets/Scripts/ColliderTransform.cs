@@ -22,8 +22,8 @@ public class ColliderTransform : MonoBehaviour
         {
             return;
         }
-        if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.W))
-        {
+        
+        if(WorldSwitchController.isSwitch){
             Invoke("ColliderDetect", 0.1f);
         }
         
