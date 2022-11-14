@@ -30,7 +30,7 @@ public class EchoNew : MonoBehaviour
         }
 
         // record current time to evaluates we are switching or echoing
-        if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.Q)) {
+        if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.E)) {
            echoTime = Time.time;
            isKeyDown = true;
         } 
@@ -42,7 +42,7 @@ public class EchoNew : MonoBehaviour
         }
 
         // echo finish and restore
-        if (Input.GetKeyUp(KeyCode.J) || Input.GetKeyUp(KeyCode.Q))
+        if (Input.GetKeyUp(KeyCode.J) || Input.GetKeyUp(KeyCode.E))
         {
             isKeyDown = false;
             Restore();

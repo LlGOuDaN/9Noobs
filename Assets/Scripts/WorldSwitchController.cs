@@ -31,11 +31,11 @@ public class WorldSwitchController : MonoBehaviour
     {   
         // evalute if it is a short press, if so, switching!
         isSwitch = false; 
-        if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.E))
         {
             downTime = Time.time;
         }
-       if ((Input.GetKeyUp(KeyCode.J) || Input.GetKeyUp(KeyCode.Q)) && Time.time - downTime < 0.3)
+       if ((Input.GetKeyUp(KeyCode.J) || Input.GetKeyUp(KeyCode.E)) && Time.time - downTime < 0.3)
         { 
             Debug.Log( Time.time - downTime);
             isSwitch = true;
