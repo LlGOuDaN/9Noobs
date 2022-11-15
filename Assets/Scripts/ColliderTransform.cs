@@ -31,14 +31,17 @@ public class ColliderTransform : MonoBehaviour
 
     void ColliderDetect (){
             player_color = player_object.GetComponent<SpriteRenderer>().color;
-            BoxCollider2D box = gameObject.GetComponent<BoxCollider2D>(); 
+            BoxCollider2D box = gameObject.GetComponent<BoxCollider2D>();
+            SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
             if(box != null){
                 // if it is a block
                 if( player_color != square_color ) {
                     box.enabled = false;
+                    sr.enabled = false;
                 }
                 else{
                     box.enabled = true;
+                    sr.enabled = true;
                 }
             }
             else{
@@ -46,9 +49,11 @@ public class ColliderTransform : MonoBehaviour
                 PolygonCollider2D polygon = gameObject.GetComponent<PolygonCollider2D>(); 
                 if( player_color != square_color ) {
                     polygon.enabled = false;
+                    sr.enabled = false;
                 }
                 else{
                     polygon.enabled = true;
+                    sr.enabled = true;
                 }
             }
             

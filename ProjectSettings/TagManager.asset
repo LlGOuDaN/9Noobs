@@ -46,6 +46,9 @@ TagManager:
   - name: Background
     uniqueID: 3682526559
     locked: 0
+  - name: MoveBackground
+    uniqueID: 1203603309
+    locked: 0
   - name: Echo
     uniqueID: 1304417487
     locked: 0
