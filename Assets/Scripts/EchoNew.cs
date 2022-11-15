@@ -9,8 +9,12 @@ public class EchoNew : MonoBehaviour
     private Vector3 scale;
 
     private float echoTime;
-
     private bool isKeyDown;
+
+    public bool getKeyDown(){
+        return isKeyDown;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +51,7 @@ public class EchoNew : MonoBehaviour
             isKeyDown = false;
             Restore();
         }
+
 
         
         

@@ -6,25 +6,18 @@ using UnityEngine.SceneManagement;
 
 public class SwitchBackground : MonoBehaviour
 {
-    public GameObject darkLight;
+    private GameObject player_object;
     // Start is called before the first frame update
     void Start()
     {
-        darkLight = GameObject.Find("Background");
+        player_object = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
-        bool isRealWhite;
-        if (Int32.Parse(SceneManager.GetActiveScene().name) < 3){
-            isRealWhite = darkLight.GetComponent<DarkLightBlockController>().isWhite;
-        }
-        else{
-            isRealWhite = ! darkLight.GetComponent<DarkLightBlockController>().isWhite;
-        }
 
-        if (isRealWhite)
+        if (player_object.GetComponent<SpriteRenderer>().color!=Color.white)
         {
             gameObject.transform.GetChild(0).gameObject.SetActive(true);
             gameObject.transform.GetChild(1).gameObject.SetActive(false);
