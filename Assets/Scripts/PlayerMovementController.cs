@@ -44,6 +44,10 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask deadCheckLayer;
+    [SerializeField] private AudioSource switchSFX;
+    [SerializeField] private AudioSource lightWorldBGM;
+    [SerializeField] private AudioSource darkWorldBGM;
+
 
     [SerializeField] private TrailRenderer tr;
 
@@ -103,6 +107,10 @@ public class PlayerMovementController : MonoBehaviour
 
             if(WorldSwitchController.isSwitch)
             {
+                switchSFX.Play();
+                darkWorldBGM.mute = lightWorldBGM.mute;
+                lightWorldBGM.mute = !lightWorldBGM.mute;
+                
                 if (GetComponent<SpriteRenderer>().color == Color.black)
                 {
                     GetComponent<SpriteRenderer>().color = Color.white;

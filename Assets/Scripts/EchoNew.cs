@@ -11,6 +11,8 @@ public class EchoNew : MonoBehaviour
     private float echoTime;
 
     private bool isKeyDown;
+
+    [SerializeField] private AudioSource echoSFX;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +39,10 @@ public class EchoNew : MonoBehaviour
 
         // it's a long press, echo!
         if(isKeyDown && Time.time - echoTime > 0.3){
+            if (!echoSFX.isPlaying)
+            {
+                echoSFX.Play();
+            }
             renderer.color = player_object.GetComponent<SpriteRenderer>().color==Color.white ? Color.white: Color.black ;
             renderer.transform.localScale *=  (1+Time.deltaTime);
         }
