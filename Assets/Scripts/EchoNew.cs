@@ -41,7 +41,10 @@ public class EchoNew : MonoBehaviour
 
         // it's a long press, echo!
         if(isKeyDown && Time.time - echoTime > 0.3){
-            renderer.color = player_object.GetComponent<SpriteRenderer>().color==Color.white ? Color.white: Color.black ;
+            renderer.color = player_object.GetComponent<SpriteRenderer>().color==Color.white ? Color.white: Color.black;
+            if (renderer.transform.localScale.x < .6){
+                renderer.transform.localScale = new Vector3(.6f, .6f, 2);
+            }
             renderer.transform.localScale *=  (1+Time.deltaTime);
         }
 

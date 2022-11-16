@@ -43,26 +43,23 @@ public class ColliderTransform : MonoBehaviour
             if(box != null){
                 // if it is a block
                 if( player_color != square_color ) {
-                    sr.enabled = false;
+                    sr.maskInteraction  =  SpriteMaskInteraction.VisibleInsideMask;
                 }
                 else{
-                    sr.enabled = true;
+                    sr.maskInteraction = SpriteMaskInteraction.None;
                 }
             }
             else{
                 // if it is a obstacle
                 PolygonCollider2D polygon = gameObject.GetComponent<PolygonCollider2D>(); 
                 if( player_color != square_color ) {
-                    sr.enabled = false;
+                    sr.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
                 }
                 else{
-                    sr.enabled = true;
+                    sr.maskInteraction = SpriteMaskInteraction.None;
                 }
             }
-            if (isKeyDown) {
-                
-                sr.enabled = true;
-            }
+
     }
 
     void ColliderDetect (){
