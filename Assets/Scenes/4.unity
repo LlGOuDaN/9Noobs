@@ -6082,6 +6082,26 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 5.952381
       objectReference: {fileID: 0}
+    - target: {fileID: 8434063, guid: 49b81ab4e3cc5f140895224d3ba092b6, type: 3}
+      propertyPath: m_BackSortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434063, guid: 49b81ab4e3cc5f140895224d3ba092b6, type: 3}
+      propertyPath: m_FrontSortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434063, guid: 49b81ab4e3cc5f140895224d3ba092b6, type: 3}
+      propertyPath: m_BackSortingLayerID
+      value: -480378343
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434063, guid: 49b81ab4e3cc5f140895224d3ba092b6, type: 3}
+      propertyPath: m_FrontSortingLayerID
+      value: -1947219745
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434063, guid: 49b81ab4e3cc5f140895224d3ba092b6, type: 3}
+      propertyPath: m_IsCustomRangeActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 385860231, guid: 49b81ab4e3cc5f140895224d3ba092b6, type: 3}
       propertyPath: tr
       value: 
@@ -6090,6 +6110,14 @@ PrefabInstance:
       propertyPath: deathNoteUI
       value: 
       objectReference: {fileID: 454588989}
+    - target: {fileID: 988219093, guid: 49b81ab4e3cc5f140895224d3ba092b6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 988219093, guid: 49b81ab4e3cc5f140895224d3ba092b6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 645004935324695102, guid: 49b81ab4e3cc5f140895224d3ba092b6, type: 3}
       propertyPath: Target
       value: 
@@ -19265,6 +19293,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be6778cb33a1c464987752e0739e838b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1990071338 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 988219092, guid: 49b81ab4e3cc5f140895224d3ba092b6, type: 3}
+  m_PrefabInstance: {fileID: 694530353}
+  m_PrefabAsset: {fileID: 0}
+--- !u!331 &1990071340
+SpriteMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1990071338}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10758, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 0}
+  m_MaskAlphaCutoff: 0.2
+  m_FrontSortingLayerID: -480378343
+  m_BackSortingLayerID: 1304417487
+  m_FrontSortingLayer: 1
+  m_BackSortingLayer: -1
+  m_FrontSortingOrder: 0
+  m_BackSortingOrder: 0
+  m_IsCustomRangeActive: 1
+  m_SpriteSortPoint: 0
 --- !u!1 &1990414283 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5282798682900214976, guid: 91ed91a0ac56b4348a9e1a4503add020, type: 3}
