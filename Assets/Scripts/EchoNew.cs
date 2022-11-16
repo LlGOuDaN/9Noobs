@@ -15,6 +15,8 @@ public class EchoNew : MonoBehaviour
         return isKeyDown;
     }
 
+
+    [SerializeField] private AudioSource echoSFX;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +46,11 @@ public class EchoNew : MonoBehaviour
             renderer.color = player_object.GetComponent<SpriteRenderer>().color==Color.white ? Color.white: Color.black;
             if (renderer.transform.localScale.x < .6){
                 renderer.transform.localScale = new Vector3(.6f, .6f, 2);
+            }
+
+            if (!echoSFX.isPlaying)
+            {
+                echoSFX.Play();
             }
             renderer.transform.localScale *=  (1+Time.deltaTime);
         }
