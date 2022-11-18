@@ -19,6 +19,10 @@ public class Monster : MonoBehaviour
         anim = GetComponent<Animator>();
         isDead = false;
         anim.SetBool("isMove", true);
+
+        if(directionRight) {
+            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+        }
     }
 
     // Update is called once per frame
