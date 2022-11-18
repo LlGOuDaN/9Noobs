@@ -9,6 +9,7 @@ TagManager:
   - JumpTtrlEndPoint
   - Obstacle
   - CheckPoint
+  - Saw
   layers:
   - Default
   - TransparentFX

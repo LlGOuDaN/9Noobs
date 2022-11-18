@@ -300,6 +300,12 @@ public class PlayerMovementController : MonoBehaviour
         {
             isDead = true;
         }
+
+        if (obj.tag == "Saw")
+        {
+            isDead = true;
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D col)

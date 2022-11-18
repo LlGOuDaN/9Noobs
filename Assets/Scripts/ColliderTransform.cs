@@ -77,7 +77,7 @@ public class ColliderTransform : MonoBehaviour
                 }
             }
             else{
-                // if it is a obstacle
+                // if it is a obstacle or Saw
                 PolygonCollider2D polygon = gameObject.GetComponent<PolygonCollider2D>(); 
                 if( player_color != square_color ) {
                     polygon.enabled = false;
