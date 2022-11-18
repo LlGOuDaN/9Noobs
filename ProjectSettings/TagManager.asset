@@ -10,6 +10,7 @@ TagManager:
   - Obstacle
   - CheckPoint
   - Saw
+  - Monster
   layers:
   - Default
   - TransparentFX

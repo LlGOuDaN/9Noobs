@@ -306,6 +306,17 @@ public class PlayerMovementController : MonoBehaviour
             isDead = true;
         }
 
+        if(obj.tag == "Monster")
+        {
+            if(groundCheck.transform.position.y > col.transform.position.y) {
+                Debug.Log("Monster dies");
+                obj.SetActive(false);
+            }
+            else {
+                isDead = true;
+            }
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D col)
