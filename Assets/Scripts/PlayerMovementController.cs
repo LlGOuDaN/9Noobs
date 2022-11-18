@@ -309,8 +309,7 @@ public class PlayerMovementController : MonoBehaviour
         if(obj.tag == "Monster")
         {
             if(groundCheck.transform.position.y > col.transform.position.y) {
-                Debug.Log("Monster dies");
-                obj.SetActive(false);
+                obj.GetComponent<Monster>().Die();
             }
             else {
                 isDead = true;
