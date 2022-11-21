@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DarkLightBlockController : MonoBehaviour
 {
-    public bool isWhite;
+    public static bool isWhite;
 
     private SpriteRenderer renderer;
     // Start is called before the first frame update
@@ -28,6 +28,7 @@ public class DarkLightBlockController : MonoBehaviour
             isWhite = !isWhite;
             ChangeColor();
         }
+       //Debug.Log(isWhite);
         
     }
 
