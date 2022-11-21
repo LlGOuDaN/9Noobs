@@ -51,6 +51,7 @@ public class Monster : MonoBehaviour
         // record the monster color and start height.
         monster_isWhite = renderer.color == Color.white ? true : false; 
         monster_height = this.transform.position.y;
+        
 
     }
 
