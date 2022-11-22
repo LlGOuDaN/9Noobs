@@ -11,8 +11,9 @@ public class DarkLightBlockController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // set the world color by mask color
         renderer = gameObject.GetComponent<SpriteRenderer>();
-        renderer.color = isWhite ? Color.white : Color.black;
+        isWhite = renderer.color == Color.white;
     }
 
     // Update is called once per frame
