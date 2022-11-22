@@ -15,6 +15,7 @@ public class PlayerMovementController : MonoBehaviour
     bool doubleJump;
     private float horizontalMovement;
     private bool isDead;
+    private bool invincible;
     private Vector3 respawnPosition;
     private Vector3 respawnPositionInitial;
     public bool gravityMode;
@@ -63,6 +64,7 @@ public class PlayerMovementController : MonoBehaviour
         t_initial = t;
         rb = GetComponent<Rigidbody2D>();
         isDead = false;
+        invincible = false;
         respawnPosition = transform.position;
         respawnPositionInitial = transform.position;
         if (gravityMode)
@@ -204,9 +206,15 @@ public class PlayerMovementController : MonoBehaviour
             GameManager.disableInput = false;
             GameManager.disbaleRespawn = true;
             deathNoteUI.SetActive(false);
+            invincible = true;
+            Invoke("RestoreInvincible", 1);
         }
     }
 
+    private void RestoreInvincible()
+    {
+        invincible = false;
+    }
     private void FixedUpdate()
     {
         var h = transform.position.y;
@@ -312,7 +320,10 @@ public class PlayerMovementController : MonoBehaviour
                 obj.GetComponent<Monster>().Die();
             }
             else {
-                isDead = true;
+                if (!invincible)
+                {
+                    isDead = true;    
+                }
             }
         }
 
