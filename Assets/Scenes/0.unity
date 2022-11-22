@@ -812,6 +812,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime_Black
       objectReference: {fileID: 0}
+    - target: {fileID: 7840935588830915446, guid: e043a8737d4f85e4ab68be3e29c474f3, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7840935588830915446, guid: e043a8737d4f85e4ab68be3e29c474f3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 7840935588830915446, guid: e043a8737d4f85e4ab68be3e29c474f3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.69
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e043a8737d4f85e4ab68be3e29c474f3, type: 3}
 --- !u!1 &465467675
