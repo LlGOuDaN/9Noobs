@@ -9,7 +9,6 @@ using TMPro;
 public class Timer : MonoBehaviour
 {
     public TextMeshPro text;
-    public GameObject darkLight;
     public GameObject gameManager;
     public float timeTake;
 
@@ -17,7 +16,6 @@ public class Timer : MonoBehaviour
     public void Start()
     {
         text = gameObject.GetComponent<TextMeshPro>();
-        darkLight = GameObject.Find("Background");
         gameManager = GameObject.Find("GameManager");
         timeTake = 0;
     }
@@ -28,10 +26,10 @@ public class Timer : MonoBehaviour
             return;
         }
         if (Int32.Parse(SceneManager.GetActiveScene().name) < 3){
-            text.color = darkLight.GetComponent<DarkLightBlockController>().isWhite ? Color.black : Color.white;
+            text.color = !DarkLightBlockController.isWhite ? Color.black : Color.white;
         }
         else{
-            text.color = darkLight.GetComponent<DarkLightBlockController>().isWhite ? Color.white : Color.black;
+            text.color = !DarkLightBlockController.isWhite ? Color.white : Color.black;
         }
         if (!gameManager.GetComponent<GameManager>().isEnd()){
             timeTake += Time.deltaTime;

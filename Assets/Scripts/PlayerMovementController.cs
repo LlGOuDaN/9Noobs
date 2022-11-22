@@ -300,6 +300,22 @@ public class PlayerMovementController : MonoBehaviour
         {
             isDead = true;
         }
+
+        if (obj.tag == "Saw")
+        {
+            isDead = true;
+        }
+
+        if(obj.tag == "Monster")
+        {
+            if(groundCheck.transform.position.y > col.transform.position.y) {
+                obj.GetComponent<Monster>().Die();
+            }
+            else {
+                isDead = true;
+            }
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D col)
