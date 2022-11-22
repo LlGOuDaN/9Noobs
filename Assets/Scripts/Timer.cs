@@ -26,10 +26,10 @@ public class Timer : MonoBehaviour
             return;
         }
         if (Int32.Parse(SceneManager.GetActiveScene().name) < 3){
-            text.color = !DarkLightBlockController.isWhite ? Color.black : Color.white;
+            text.color = !(GameObject.FindWithTag("Player").GetComponent<SpriteRenderer>().color == Color.white) ? Color.black : Color.white;
         }
         else{
-            text.color = !DarkLightBlockController.isWhite ? Color.white : Color.black;
+            text.color = !(GameObject.FindWithTag("Player").GetComponent<SpriteRenderer>().color == Color.white) ? Color.white : Color.black;
         }
         if (!gameManager.GetComponent<GameManager>().isEnd()){
             timeTake += Time.deltaTime;

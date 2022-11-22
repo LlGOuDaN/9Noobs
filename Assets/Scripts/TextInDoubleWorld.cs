@@ -17,6 +17,6 @@ public class TextInDoubleWorld : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.color = !DarkLightBlockController.isWhite ? Color.black : Color.white;
+        text.color = !(GameObject.FindWithTag("Player").GetComponent<SpriteRenderer>().color == Color.white) ? Color.black : Color.white;
     }
 }

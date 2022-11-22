@@ -65,7 +65,7 @@ public class Monster : MonoBehaviour
         }
         
         // if the monster is in other world, turn in Idle state, disable rigidbody.
-        if(monster_isWhite ^ DarkLightBlockController.isWhite ){
+        if(monster_isWhite ^ GameObject.FindWithTag("Player").GetComponent<SpriteRenderer>().color == Color.white ){
             anim.SetBool("isMove", false);
             anim.SetBool("isIdle",true);
             rb.isKinematic = true;
