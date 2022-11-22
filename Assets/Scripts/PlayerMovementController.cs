@@ -332,6 +332,11 @@ public class PlayerMovementController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         GameObject obj = col.gameObject;
+        if (obj.tag == "Coins")
+        {
+            Destroy(obj);
+        }
+        
         if (obj.tag == "CheckPoint")
         {
             respawnPosition = obj.transform.position;
