@@ -38,7 +38,7 @@ public class ColliderTransform : MonoBehaviour
             player_color = player_object.GetComponent<SpriteRenderer>().color;
             SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
             BoxCollider2D box = gameObject.GetComponent<BoxCollider2D>();
-            bool isKeyDown = echo.GetComponent<EchoNew>().getKeyDown();
+            // bool isKeyDown = echo.GetComponent<EchoNew>().getKeyDown();
 
             if(box != null){
                 // if it is a block
