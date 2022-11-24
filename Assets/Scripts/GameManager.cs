@@ -9,12 +9,20 @@ public class GameManager : MonoBehaviour
     public float restartDelay = 1.5f;
 
     public GameObject completeLevelUI;
+    public GameObject starRatingUI;
 
     public static bool disableInput = false;
     public static bool disbaleRespawn = true;
+
+    int score = 0;
     public void CompleteLevel() {
         disableInput = true;
+
+        //score = FindObjectOfType<ScoreManager>().GetScore();
+        Debug.Log("Level Score:" + score.ToString());
         completeLevelUI.SetActive(true);
+        starRatingUI.SetActive(true);
+        Invoke("SetStars", 0.5f);
     }
 
     public void EndGame() {
@@ -30,7 +38,11 @@ public class GameManager : MonoBehaviour
     }
 
     void Restart() {
-        Debug.Log("I am here");
+        Debug.Log("Restart in GameManager");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    void SetStars() {
+        FindObjectOfType<StarHandler>().StarsAcheived();
     }
 }

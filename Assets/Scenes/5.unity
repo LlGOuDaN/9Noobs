@@ -3254,6 +3254,41 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4454004043721942342, guid: 6d2baed77e41f4fa6ae4fdf32fea4fe5, type: 3}
   m_PrefabInstance: {fileID: 1000858210}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1000858212 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 667823411733774211, guid: 6d2baed77e41f4fa6ae4fdf32fea4fe5, type: 3}
+  m_PrefabInstance: {fileID: 1000858210}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1000858213 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 66154881, guid: 6d2baed77e41f4fa6ae4fdf32fea4fe5, type: 3}
+  m_PrefabInstance: {fileID: 1000858210}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1000858214 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 667823412342955810, guid: 6d2baed77e41f4fa6ae4fdf32fea4fe5, type: 3}
+  m_PrefabInstance: {fileID: 1000858210}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1000858215 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 667823410536174440, guid: 6d2baed77e41f4fa6ae4fdf32fea4fe5, type: 3}
+  m_PrefabInstance: {fileID: 1000858210}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1000858216 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5964818930955806059, guid: 6d2baed77e41f4fa6ae4fdf32fea4fe5, type: 3}
+  m_PrefabInstance: {fileID: 1000858210}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1000858217 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5964818930026152686, guid: 6d2baed77e41f4fa6ae4fdf32fea4fe5, type: 3}
+  m_PrefabInstance: {fileID: 1000858210}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1000858218 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5964818929045304973, guid: 6d2baed77e41f4fa6ae4fdf32fea4fe5, type: 3}
+  m_PrefabInstance: {fileID: 1000858210}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1012442944
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3685,6 +3720,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1278228775}
   - component: {fileID: 1278228774}
+  - component: {fileID: 1278228776}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3706,6 +3742,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restartDelay: 2
   completeLevelUI: {fileID: 1000858211}
+  starRatingUI: {fileID: 1000858213}
 --- !u!4 &1278228775
 Transform:
   m_ObjectHideFlags: 0
@@ -3721,6 +3758,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1278228776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278228773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8759c8fb5923d4b6bbbf801e7fbe9e16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stars:
+  - {fileID: 1000858218}
+  - {fileID: 1000858217}
+  - {fileID: 1000858216}
+  starsEmpty:
+  - {fileID: 1000858215}
+  - {fileID: 1000858214}
+  - {fileID: 1000858212}
 --- !u!1001 &1295859893
 PrefabInstance:
   m_ObjectHideFlags: 0
