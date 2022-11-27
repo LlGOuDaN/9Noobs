@@ -7988,6 +7988,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1869932457548487616, guid: df7ccf5350735474c81b4a0a2b14abf2, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1869932457548487616, guid: df7ccf5350735474c81b4a0a2b14abf2, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1869932457548487616, guid: df7ccf5350735474c81b4a0a2b14abf2, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1869932457548487616, guid: df7ccf5350735474c81b4a0a2b14abf2, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278190080
+      objectReference: {fileID: 0}
     - target: {fileID: 1869932457826079366, guid: df7ccf5350735474c81b4a0a2b14abf2, type: 3}
       propertyPath: m_Name
       value: Main Camera
