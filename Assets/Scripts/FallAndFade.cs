@@ -46,6 +46,7 @@ public class FallAndFade : MonoBehaviour
             {
                 transform.rotation = Quaternion.Euler(0, 0, rotZ * angle / Mathf.Abs(rotZ));
                 isTriggered = false;
+                gameObject.SetActive(false);
             }
         }
 
