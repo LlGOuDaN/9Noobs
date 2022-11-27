@@ -6,10 +6,10 @@ using UnityEngine;
 public class TextInDoubleWorld : MonoBehaviour
 {
     public TextMeshPro text;
+    private Color color;
     // Start is called before the first frame update
     void Start()
     {
-        // color = gameObject.GameObject.Find("Background")
 
         text = gameObject.GetComponent<TextMeshPro>();
     }
@@ -17,6 +17,7 @@ public class TextInDoubleWorld : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.color = !(GameObject.FindWithTag("Player").GetComponent<SpriteRenderer>().color == Color.white) ? Color.black : Color.white;
+        color = GameObject.FindWithTag("Player").GetComponent<SpriteRenderer>().color;
+        text.color = color;
     }
 }

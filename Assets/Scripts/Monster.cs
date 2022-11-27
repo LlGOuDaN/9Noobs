@@ -45,8 +45,7 @@ public class Monster : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rb.isKinematic = true;
 
-        // record the monster color and start height.
-        monster_isWhite = renderer.color == Color.white ? true : false; 
+        // record the monster's  start height.
         monster_height = this.transform.position.y;
         
 
@@ -59,13 +58,13 @@ public class Monster : MonoBehaviour
         if(isDead) return;
 
         // if the monster is falling, die.
-        if(monster_height - this.transform.position.y > 5.0f){
+        if(monster_height - this.transform.position.y > 10.0f){
             Die();
             return;
         }
         
         // if the monster is in other world, turn in Idle state, disable rigidbody.
-        if(monster_isWhite ^ GameObject.FindWithTag("Player").GetComponent<SpriteRenderer>().color == Color.white ){
+        if(renderer.color != GameObject.FindWithTag("Player").GetComponent<SpriteRenderer>().color){
             anim.SetBool("isMove", false);
             anim.SetBool("isIdle",true);
             rb.isKinematic = true;
