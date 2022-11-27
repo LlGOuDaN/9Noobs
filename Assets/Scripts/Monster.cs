@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,10 +28,6 @@ public class Monster : MonoBehaviour
     private bool monster_isWhite;
 
     private float monster_height;
-
-    
-
-
 
     // Start is called before the first frame update
     void Start()
@@ -96,7 +93,17 @@ public class Monster : MonoBehaviour
         }
 
         // determing the player is on left or right, then chasing.
-        directionRight = x > 0 ? true : false; 
+
+        bool next_direction = x > 0 ? true : false;
+
+        if(next_direction != directionRight) {
+            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+        }
+
+        directionRight = next_direction;
+
+        if(Math.Abs(x) < 0.05) return;
+
         if (directionRight)
         {   
             transform.Translate(Vector2.right * speed * Time.deltaTime);
