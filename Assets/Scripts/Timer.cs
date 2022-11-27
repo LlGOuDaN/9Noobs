@@ -12,6 +12,8 @@ public class Timer : MonoBehaviour
     public GameObject gameManager;
     public float timeTake;
 
+    private Color color;
+
     // Start is called before the first frame update
     public void Start()
     {
@@ -19,17 +21,18 @@ public class Timer : MonoBehaviour
         gameManager = GameObject.Find("GameManager");
         timeTake = 0;
     }
-    
-    public void Update()
+        public void Update()
     {
+        color = GameObject.FindWithTag("Player").GetComponent<SpriteRenderer>().color;
+        
         if (GameManager.disableInput){
             return;
         }
         if (Int32.Parse(SceneManager.GetActiveScene().name) < 3){
-            text.color = !DarkLightBlockController.isWhite ? Color.black : Color.white;
+            text.color = color;
         }
         else{
-            text.color = !DarkLightBlockController.isWhite ? Color.white : Color.black;
+            text.color = color;
         }
         if (!gameManager.GetComponent<GameManager>().isEnd()){
             timeTake += Time.deltaTime;
