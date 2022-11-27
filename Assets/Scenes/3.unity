@@ -2971,6 +2971,7 @@ GameObject:
   - component: {fileID: 1081803558}
   - component: {fileID: 1081803557}
   - component: {fileID: 1081803556}
+  - component: {fileID: 1081803559}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -3007,8 +3008,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190335
-  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3092,9 +3093,22 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 260, y: -39}
+  m_AnchoredPosition: {x: 171, y: -39}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1081803559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1081803555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc96d8006d7852948bb920f319cdbb1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 0}
 --- !u!1 &1099365005
 GameObject:
   m_ObjectHideFlags: 0
@@ -3884,6 +3898,7 @@ GameObject:
   - component: {fileID: 1554131588}
   - component: {fileID: 1554131590}
   - component: {fileID: 1554131589}
+  - component: {fileID: 1554131591}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -3908,7 +3923,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 127, y: -37}
+  m_AnchoredPosition: {x: 38, y: -37}
   m_SizeDelta: {x: 82, y: 84}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1554131589
@@ -3949,6 +3964,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1554131587}
   m_CullTransparentMesh: 1
+--- !u!95 &1554131591
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554131587}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: afc9ab7f0c67a4a52998f2ddaa7a5984, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1590196863
 PrefabInstance:
   m_ObjectHideFlags: 0
