@@ -1725,6 +1725,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 66154881, guid: 6d2baed77e41f4fa6ae4fdf32fea4fe5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4454004043629614864, guid: 6d2baed77e41f4fa6ae4fdf32fea4fe5, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1812,6 +1816,10 @@ PrefabInstance:
     - target: {fileID: 4454004043629614865, guid: 6d2baed77e41f4fa6ae4fdf32fea4fe5, type: 3}
       propertyPath: m_Name
       value: LevelCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454004043721942342, guid: 6d2baed77e41f4fa6ae4fdf32fea4fe5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d2baed77e41f4fa6ae4fdf32fea4fe5, type: 3}
@@ -3183,7 +3191,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 157, y: -39}
+  m_AnchoredPosition: {x: 248.6, y: -40.399994}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1327515484
@@ -3215,8 +3223,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190335
+  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
