@@ -38,6 +38,9 @@ public class ColliderTransform : MonoBehaviour
             player_color = player_object.GetComponent<SpriteRenderer>().color;
             SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
             BoxCollider2D box = gameObject.GetComponent<BoxCollider2D>();
+            PolygonCollider2D polygon = gameObject.GetComponent<PolygonCollider2D>(); 
+            CircleCollider2D circle = gameObject.GetComponent<CircleCollider2D>(); 
+            
             // bool isKeyDown = echo.GetComponent<EchoNew>().getKeyDown();
 
             if(box != null){
@@ -49,14 +52,34 @@ public class ColliderTransform : MonoBehaviour
                     sr.maskInteraction = SpriteMaskInteraction.None;
                 }
             }
-            else{
+            else if (polygon != null){
                 // if it is a obstacle
-                PolygonCollider2D polygon = gameObject.GetComponent<PolygonCollider2D>(); 
+                
                 if( player_color != square_color ) {
                     sr.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
                 }
                 else{
                     sr.maskInteraction = SpriteMaskInteraction.None;
+                }
+            }
+            else if (circle != null){
+                // if it is a obstacle
+                
+                if(player_color == Color.white){
+                    if(square_color == Color.white){
+                        sr.maskInteraction = SpriteMaskInteraction.None;
+                    }
+                    else{
+                        sr.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+                    }
+                }
+                else{
+                    if(square_color != Color.white){
+                        sr.maskInteraction = SpriteMaskInteraction.None;
+                    }
+                    else{
+                        sr.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+                    }
                 }
             }
 
@@ -65,7 +88,8 @@ public class ColliderTransform : MonoBehaviour
     void ColliderDetect (){
             player_color = player_object.GetComponent<SpriteRenderer>().color;
             BoxCollider2D box = gameObject.GetComponent<BoxCollider2D>();
-
+            PolygonCollider2D polygon = gameObject.GetComponent<PolygonCollider2D>(); 
+            CircleCollider2D circle = gameObject.GetComponent<CircleCollider2D>(); 
 
             if(box != null){
                 // if it is a block
@@ -76,14 +100,39 @@ public class ColliderTransform : MonoBehaviour
                     box.enabled = true;
                 }
             }
-            else{
+            else if (polygon != null){
                 // if it is a obstacle or Saw
-                PolygonCollider2D polygon = gameObject.GetComponent<PolygonCollider2D>(); 
                 if( player_color != square_color ) {
                     polygon.enabled = false;
                 }
                 else{
                     polygon.enabled = true;
+                }
+            }
+            else if (circle != null){
+                // if it is a obstacle or Saw
+                if( player_color != square_color ) {
+                    circle.enabled = false;
+                }
+                else{
+                    circle.enabled = true;
+                }
+
+                if(player_color == Color.white){
+                    if(square_color == Color.white){
+                        circle.enabled = true;
+                    }
+                    else{
+                        circle.enabled = false;
+                    }
+                }
+                else{
+                    if(square_color != Color.white){
+                        circle.enabled = true;
+                    }
+                    else{
+                        circle.enabled = false;
+                    }
                 }
             }
             
