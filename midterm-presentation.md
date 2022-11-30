@@ -31,10 +31,3 @@ Now again its detect-jump-switch time. One more thing We can also switch to inte
 reach the lower bars.
 
 We have more mechanisms waiting you to explore. We sincerely hope you love this game. Thank you!
-
-
-
-
-
-
-
